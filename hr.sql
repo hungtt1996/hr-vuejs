@@ -208,7 +208,7 @@ INSERT INTO `sysmsg` VALUES ('81', '18', '0', '12', '0');
 DROP TABLE IF EXISTS `t_department`;
 CREATE TABLE `t_department` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'Department name',
+  `name` varchar(64) DEFAULT NULL COMMENT 'Department name',
   `parentId` int(11) DEFAULT NULL,
   `depPath` varchar(255) DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT '1',
@@ -245,8 +245,8 @@ INSERT INTO `t_department` VALUES ('126', 'a1', '124', '.1.115.124.126', '1', '0
 DROP TABLE IF EXISTS `t_employee`;
 CREATE TABLE `t_employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'Name',
-  `gender` char(4) DEFAULT NULL COMMENT 'gender',
+  `name` varchar(64) DEFAULT NULL COMMENT 'Name',
+  `gender` char(6) DEFAULT NULL COMMENT 'gender',
   `birthday` date DEFAULT NULL COMMENT 'date of birth',
   `idCard` char(18) DEFAULT NULL COMMENT 'identification number',
   `wedlock` enum('married','unmarried','Divorce') DEFAULT NULL COMMENT 'marital status',
@@ -255,15 +255,15 @@ CREATE TABLE `t_employee` (
   `politicsStatusId` int(8) DEFAULT NULL COMMENT 'political status',
   `email` varchar(20) DEFAULT NULL COMMENT 'E-mail',
   `phone` varchar(11) DEFAULT NULL COMMENT 'telephone number',
-  `address` varchar(64) DEFAULT NULL COMMENT 'contact address',
+  `address` varchar(100) DEFAULT NULL COMMENT 'contact address',
   `departmentId` int(11) DEFAULT NULL COMMENT 'Department',
   `jobTitleId` int(11) DEFAULT NULL COMMENT 'job title',
   `positionId` int(11) DEFAULT NULL COMMENT 'position',
   `salaryId` int(11) DEFAULT NULL COMMENT 'Payroll',
-  `engageForm` varchar(8) DEFAULT NULL COMMENT 'Employment form',
+  `engageForm` varchar(20) DEFAULT NULL COMMENT 'Employment form',
   `tiptopDegree` enum('PhD','masters degree','Undergraduate','College','High school','junior high school','primary school','other') DEFAULT NULL COMMENT 'highest education',
-  `specialty` varchar(32) DEFAULT NULL COMMENT 'profession',
-  `school` varchar(32) DEFAULT NULL COMMENT 'graduated school',
+  `specialty` varchar(50) DEFAULT NULL COMMENT 'profession',
+  `school` varchar(50) DEFAULT NULL COMMENT 'graduated school',
   `beginDate` date DEFAULT NULL COMMENT 'Entry date',
   `workState` enum('In service','Resignation') DEFAULT 'In service' COMMENT 'Working status',
   `workId` char(8) DEFAULT NULL COMMENT 'Job number',
@@ -405,7 +405,7 @@ INSERT INTO `t_employee` VALUES ('1957', 'Test staff', 'male', '1989-12-31', '61
 DROP TABLE IF EXISTS `t_jobtitle`;
 CREATE TABLE `t_jobtitle` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'Job title',
+  `name` varchar(64) DEFAULT NULL COMMENT 'Job title',
   `level` enum('Positive Senior','Deputy Senior','intermediate','primary','Staff') DEFAULT NULL COMMENT 'Title level',
   `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation time',
   `enabled` tinyint(1) DEFAULT '1',
@@ -555,7 +555,7 @@ INSERT INTO `t_menu_role` VALUES ('277', '28', '1');
 DROP TABLE IF EXISTS `t_nation`;
 CREATE TABLE `t_nation` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'name',
+  `name` varchar(64) DEFAULT NULL COMMENT 'name',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='Nation';
 
@@ -625,7 +625,7 @@ INSERT INTO `t_nation` VALUES ('56', 'Jinuo');
 DROP TABLE IF EXISTS `t_politicsstatus`;
 CREATE TABLE `t_politicsstatus` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'name',
+  `name` varchar(64) DEFAULT NULL COMMENT 'name',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='political status';
 
@@ -652,7 +652,7 @@ INSERT INTO `t_politicsstatus` VALUES ('13', 'Ordinary citizen');
 DROP TABLE IF EXISTS `t_position`;
 CREATE TABLE `t_position` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'Job Title',
+  `name` varchar(64) DEFAULT NULL COMMENT 'Job Title',
   `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation time',
   `enabled` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
@@ -704,7 +704,7 @@ INSERT INTO `t_role` VALUES ('15', 'ROLE_test2', 'Test role2');
 DROP TABLE IF EXISTS `t_salary`;
 CREATE TABLE `t_salary` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'A / C set name',
+  `name` varchar(64) DEFAULT NULL COMMENT 'A / C set name',
   `basicSalary` int(11) DEFAULT NULL COMMENT 'Basic wage',
   `bonus` int(11) DEFAULT NULL COMMENT 'bonus',
   `lunchSalary` int(11) DEFAULT NULL COMMENT 'Lunch allowance',
@@ -734,7 +734,7 @@ INSERT INTO `t_salary` VALUES ('19', 'Test payroll', '8888', '700', '600', '500'
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(32) DEFAULT NULL COMMENT 'Name',
+  `name` varchar(64) DEFAULT NULL COMMENT 'Name',
   `phone` char(11) DEFAULT NULL COMMENT 'mobile phone number',
   `telephone` varchar(16) DEFAULT NULL COMMENT 'telephone number',
   `address` varchar(64) DEFAULT NULL COMMENT 'address',
