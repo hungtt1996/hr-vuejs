@@ -26,7 +26,7 @@
                     return;
                 }
                 if (!this.content || this.content.trim().length == 0) {
-                    this.$message.error('Can't send blank message');
+                    this.$message.error('Cant send blank message');
                     return;
                 }
 

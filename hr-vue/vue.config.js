@@ -1,12 +1,12 @@
 let proxyObj = {};
 proxyObj['/ws'] = {
   ws: true,
-  target: "ws://localhost:8081"
+  target: "ws://localhost:8888"
 };
 
 proxyObj['/'] = {
   ws: false,
-  target: "http://localhost:8081",
+  target: "http://localhost:8888",
   changeOrigin: true,
   pathRewrite: {
     '^/': ''
@@ -16,7 +16,7 @@ proxyObj['/'] = {
 module.exports = {
   devServer: {
     host: 'localhost',
-    port: 8080,
+    port: 1111,
     proxy: proxyObj
   }
 }

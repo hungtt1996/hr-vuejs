@@ -515,7 +515,7 @@
                 departments: [],
                 jobTitles: [],
                 positions: [],
-                tiptopDegrees: ['Undergraduate', 'College', 'master's degree', 'PhD', 'High school', 'junior high school', 'primary school', 'other'],
+                tiptopDegrees: ['Undergraduate', 'College', 'masters degree', 'PhD', 'High school', 'junior high school', 'primary school', 'other'],
                 rules: {
                     name: [{required: true, message: 'Please type in your name', trigger: 'blur'}],
                     gender: [{required: true, message: 'Please enter gender', trigger: 'blur'}],
