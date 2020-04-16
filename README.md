@@ -1,14 +1,14 @@
-# 人力资源管理系统
+# Human Resource Management System
 
-## 项目介绍
+## Project Introduction
 
-Spring Boot 实战项目（人力资源管理系统），前后端分离开发，Spring Boot + Vue 。
+Spring Boot Actual project（Human Resource Management System），Separate front-end development，Spring Boot + Vue 。
 
-- 项目地址：[https://github.com/cxy35/hr](https://github.com/cxy35/hr)
+- project address：[https://github.com/cxy35/hr](https://github.com/cxy35/hr)
 
-## 项目技术栈
+## Project Technology Stack
 
-### 前端技术栈
+### Front-end technology stack
 
 1. Vue
 2. ElementUI
@@ -19,7 +19,7 @@ Spring Boot 实战项目（人力资源管理系统），前后端分离开发�
 7. vue-cli4
 8. ...
 
-### 后端技术栈
+### Backend technology stack
 
 1. Spring Boot
 2. Spring Security
@@ -30,86 +30,86 @@ Spring Boot 实战项目（人力资源管理系统），前后端分离开发�
 7. Spring Cache
 8. WebSocket
 9. POI
-10. 邮件服务
+10. Mail service
 11. ...
 
-## 项目效果图
+## Project renderings
 
-登录
+log in
 
 ![](https://oscimg.oschina.net/oscnet/up-f1bb1a9dcf69435da89054fd98a91bf0f6c.png)
 
-首页
+Home
 
 ![](https://oscimg.oschina.net/oscnet/up-bf28b202417cb2040b8a9ed1854788a423a.png)
 
-员工列表
+Employee list
 
 ![](https://oscimg.oschina.net/oscnet/up-05405d2c04606aaff686d277f9f16ba7b4b.png)
 
-新增员工
+New employee
 
 ![](https://oscimg.oschina.net/oscnet/up-98df569bad73ce4ef4fe32b9b606a7e21ef.png)
 
-角色管理
+Role management
 
 ![](https://oscimg.oschina.net/oscnet/up-4e9c51fe334994c728a0e4d4e8f0e6c9963.png)
 
-用户管理
+User Management
 
 ![](https://oscimg.oschina.net/oscnet/up-9958c4977b05d2ef529413c0ebd5a9376ce.png)
 
-在线聊天
+Online chat
 
 ![](https://oscimg.oschina.net/oscnet/up-73929a7a0a07d7fed372401fb08c989fd0e.png)
 
-## 项目部署及二次开发
+## Project deployment and secondary development
 
-1. clone 代码到本地的 `hr` 目录： `git clone https://github.com/cxy35/hr.git hr` 。
-2. 在本地新建 `hr` 数据库，执行数据库初始化脚本 `hr/hr.sql` 。
-3. 用 IntelliJ IDEA 或其他 IDE 导入 `hr` 后端工程（选 hr 目录即可）。如果不是二次开发，则可跳过此步骤。
-4. 修改 `hr-web` 工程下的 `application.properties` 配置文件中的数据库、ActiveMQ/RabbitMQ、Redis 等配置，之后通过 IDE 启动 或 Maven 打包后启动后端服务，默认 `8081` 端口（见 `application.properties` 配置文件）。
-5. 修改 `hr-mail` 工程下的 `application.properties` 配置文件中的邮件服务、ActiveMQ/RabbitMQ 等配置，之后通过 IDE 启动 或 Maven 打包后启动邮件服务，默认 `8082` 端口（见 `application.properties` 配置文件）。如果不想发邮件，则可跳过此步骤。
-6. 用 WebStorm 或其他 IDE 导入 `hr-vue` 前端工程（选 hr-vue 目录）。如果不是二次开发，则可跳过此步骤。
-7. 在 `hr-vue` 根目录下用 `npm install` 命令安装前端相关依赖（需要先安装 `node` 环境，自行百度），如：vue、element-ui、axios 等，具体见 `hr-vue/README.md` 。
-8. 在 `hr-vue` 根目录下用 `npm run serve` 命令启动前端服务，默认 `8080` 端口（见 `vue.config.js` 配置文件）。
-9. 访问 [http://127.0.0.1:8080](http://127.0.0.1:8080) ，使用 admin/123 登录。
+1. clone Code to local `hr` table of Contents： `git clone https://github.com/cxy35/hr.git hr` 。
+2. New locally `hr` database，Execute database initialization script `hr/hr.sql` 。
+3. use IntelliJ IDEA or others IDE Import `hr` Backend engineering（selected hr Directory）。If it is not secondary development，You can skip this step。
+4. modify `hr-web` Under engineering `application.properties` Database in configuration file、ActiveMQ/RabbitMQ、Redis Wait for configuration，Then pass IDE start up or Maven Start the backend service after packaging，default `8081` port（see `application.properties` Configuration file）。
+5. modify `hr-mail` Under engineering `application.properties` Mail service in configuration file、ActiveMQ/RabbitMQ Wait for configuration，Then pass IDE start up or Maven Start the mail service after packaging，default `8082` port（see `application.properties` Configuration file）。If you don't want to send email，You can skip this step。
+6. use WebStorm or others IDE Import `hr-vue` Front-end engineering（selected hr-vue table of Contents）。If it is not secondary development，You can skip this step。
+7. in `hr-vue` Used in the root directory `npm install` Command to install front-end dependencies（Need to install first `node` surroundings，Baidu），Such as：vue、element-ui、axios Wait，See `hr-vue/README.md` 。
+8. in `hr-vue` Used in the root directory `npm run serve` Command to start the front-end service，default `8080` port（see `vue.config.js` Configuration file）。
+9. access [http://127.0.0.1:8080](http://127.0.0.1:8080) ，use admin/123 log in。
 
-## 项目研发历程
+## Project R &amp; D History
 
-- 前端，创建 hr-vue 工程
-- 前端，登录页面
-- 后端，创建 hr 工程
-- 后端，登录接口
-- 前后端，登录功能联调
-- 前端，首页（包含左侧导航菜单）
-- 后端，菜单接口
-- 前端，所有菜单对应的页面（内容暂时只包含菜单名称）
-- 前后端，菜单功能联调
-- 后端，统一增加所有请求地址的权限控制
-- 系统管理-基础信息设置
-- 系统管理-基础信息设置-职位管理
-- 系统管理-基础信息设置-职称管理
-- 系统管理-基础信息设置-角色管理
-- 系统管理-基础信息设置-部门管理
-- 系统管理-用户管理
-- 员工资料-基本资料
-- 新增员工自动发送入职通知邮件
-- 薪资管理-工资账套管理
-- 薪资管理-员工账套管理
-- 在线聊天
-- 其他业务模块还未实现...
-
-
----
-
-- [Spring Boot 教程合集](https://mp.weixin.qq.com/s/9vOiAxHFnfJnRwSlTfAHwg)
-- [Spring Boot 教程合集示例代码](https://github.com/cxy35/spring-boot-samples)
-- [Spring Boot 实战项目（人力资源管理系统）](https://github.com/cxy35/hr)
+- front end，create hr-vue engineering
+- front end，log in page
+- rear end，create hr engineering
+- rear end，Login interface
+- Front end，Login function joint debugging
+- front end，Home（Includes left navigation menu）
+- rear end，Menu interface
+- front end，Pages corresponding to all menus（The content temporarily contains only the menu name）
+- Front end，Menu function joint debugging
+- rear end，Unified increase of access control for all requested addresses
+- System Management-Basic information settings
+- System Management-Basic information settings-Position management
+- System Management-Basic information settings-Job title management
+- System Management-Basic information settings-Role management
+- System Management-Basic information settings-Department management
+- System Management-User Management
+- Employee information-basic information
+- New employees automatically send onboarding notification emails
+- Payroll management-Payroll set management
+- Payroll management-Employee account set management
+- Online chat
+- Other business modules have not been implemented...
 
 
 ---
 
-扫码关注微信公众号 **程序员35** ，获取最新技术干货，畅聊 #程序员的35，35的程序员# 。独立站点：[https://cxy35.com](https://cxy35.com)
+- [Spring Boot Tutorial collection](https://mp.weixin.qq.com/s/9vOiAxHFnfJnRwSlTfAHwg)
+- [Spring Boot Tutorial collection sample code](https://github.com/cxy35/spring-boot-samples)
+- [Spring Boot Actual project（Human Resource Management System）](https://github.com/cxy35/hr)
+
+
+---
+
+Scan the code to follow WeChat public account **programmer35** ，Get the latest technology dry goods，Chat #Programmer's35，35Programmer# 。Independent site：[https://cxy35.com](https://cxy35.com)
 
 ![](https://oscimg.oschina.net/oscnet/up-285838b9c516db5bb1ba760f292f2346078.JPEG)
