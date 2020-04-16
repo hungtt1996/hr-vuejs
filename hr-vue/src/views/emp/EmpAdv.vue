@@ -1,6 +1,6 @@
 <template>
     <div>
-        高级资料
+        Advanced Information
     </div>
 </template>
 

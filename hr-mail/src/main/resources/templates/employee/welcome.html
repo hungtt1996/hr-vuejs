@@ -2,28 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>入职通知</title>
+    <title>Entry notification</title>
 </head>
 <body>
-<p>欢迎 <span th:text="${name}"></span> 加入 XXX 大家庭，您的入职信息如下：</p>
+<p>welcome <span th:text="${name}"></span> Join XXX Large family，Your onboarding information is as follows：</p>
 <table border="1">
     <tr>
-        <td>姓名</td>
+        <td>Name</td>
         <td th:text="${name}"></td>
     </tr>
     <tr>
-        <td>职位</td>
+        <td>position</td>
         <td th:text="${positionName}"></td>
     </tr>
     <tr>
-        <td>职称</td>
+        <td>job title</td>
         <td th:text="${jobTitlelName}"></td>
     </tr>
     <tr>
-        <td>部门</td>
+        <td>department</td>
         <td th:text="${departmentName}"></td>
     </tr>
 </table>
-<p>希望在未来的日子里，携手共进！</p>
+<p>Hope in the days to come，Go hand in hand！</p>
 </body>
 </html>

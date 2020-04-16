@@ -1,6 +1,6 @@
 <template>
     <div>
-        备份恢复数据库
+        Backup and restore the database
     </div>
 </template>
 

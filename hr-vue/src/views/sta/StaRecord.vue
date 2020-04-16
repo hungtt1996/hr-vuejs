@@ -1,6 +1,6 @@
 <template>
     <div>
-        人事记录统计
+        Personnel record statistics
     </div>
 </template>
 

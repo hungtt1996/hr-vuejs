@@ -27,9 +27,9 @@ public class SobConfigController {
     public RespBean editSalaryId(Integer id, Integer salaryId) {
         boolean r = employeeService.editSalaryId(id, salaryId);
         if (r) {
-            return RespBean.ok("编辑成功");
+            return RespBean.ok("Edit successfully");
         } else {
-            return RespBean.error("编辑失败");
+            return RespBean.error("Edit failed");
         }
     }
 

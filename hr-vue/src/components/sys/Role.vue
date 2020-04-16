@@ -1,22 +1,22 @@
 <template>
     <div
             v-loading="addLoading"
-            element-loading-text="正在新增..."
+            element-loading-text="Adding..."
             element-loading-spinner="el-icon-loading"
             element-loading-background="rgba(0, 0, 0, 0.8)">
         <div>
-            <el-input class="role-add-name" placeholder="请输入角色名称" v-model="role.name">
+            <el-input class="role-add-name" placeholder="Please enter a role name" v-model="role.name">
                 <template slot="prepend">ROLE_</template>
             </el-input>
-            <el-input class="role-add-nameZh" placeholder="请输入角色中文名称" v-model="role.nameZh"
+            <el-input class="role-add-nameZh" placeholder="Please enter the Chinese character name" v-model="role.nameZh"
                       @keydown.enter.native="handleAdd"></el-input>
-            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">新增角色</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">New role</el-button>
         </div>
         <div>
             <el-collapse
                     class="role-collapse"
                     v-loading="loading"
-                    element-loading-text="正在加载..."
+                    element-loading-text="loading..."
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
                     v-model="activeName"
@@ -25,7 +25,7 @@
                 <el-collapse-item :title="role.nameZh" :name="role.id" v-for="(role,index) in roles" :key="index">
                     <el-card>
                         <div slot="header">
-                            <span>可访问的菜单</span>
+                            <span>Accessible menu</span>
                             <el-button class="role-delete-btn" size="medium" type="text" icon="el-icon-delete"
                                        @click="handleDelete(role)"></el-button>
                         </div>
@@ -40,8 +40,8 @@
                                     :props="defaultProps">
                             </el-tree>
                             <div class="role-edit-div">
-                                <el-button size="mini" @click="activeName = -1">取 消</el-button>
-                                <el-button size="mini" type="primary" @click="handleEditRoleMenu(role.id, index)">确 定
+                                <el-button size="mini" @click="activeName = -1">take Dispel</el-button>
+                                <el-button size="mini" type="primary" @click="handleEditRoleMenu(role.id, index)">Indeed set
                                 </el-button>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                     name: '',
                     nameZh: ''
                 },
-                activeName: -1, // 不展开任何面板
+                activeName: -1, // Do not expand any panel
                 roles: [],
                 menus: [],
                 defaultCheckedKeys: [],
@@ -117,7 +117,7 @@
                         }
                     });
                 } else {
-                    this.$message.error('角色名称和角色中文名称不能为空');
+                    this.$message.error('Role name and role Chinese name cannot be empty');
                 }
             },
             handleEditRoleMenu(rid, index) {
@@ -134,13 +134,13 @@
                         }
                     });
                 } else {
-                    this.$message.error('角色不能为空');
+                    this.$message.error('Role cannot be empty');
                 }
             },
             handleDelete(role) {
-                this.$confirm('此操作将永久删除【' + role.nameZh + '】角色, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm('This operation will be permanently deleted【' + role.nameZh + '】Roles, Whether to continue?', 'prompt', {
+                    confirmButtonText: 'determine',
+                    cancelButtonText: 'cancel',
                     type: 'warning'
                 }).then(() => {
                     this.deleteRequest("/system/basic/role/deleteById/" + role.id).then(resp => {
@@ -151,13 +151,13 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: 'Undeleted'
                     });
                 });
             },
             handleChange(rid) {
                 if (rid) {
-                    //  TODO BUG:不同折叠面板点击切换时，树中的 defaultCheckedKeys 值会错乱，感觉有缓存
+                    //  TODO BUG:When switching between different folding panels，In the tree defaultCheckedKeys Values will be confused，Feeling cached
                     this.initMenus();
                     this.initCheckedKeys(rid);
                 }

@@ -1,7 +1,6 @@
 package com.zhengjian.hr.mapper;
 
 import com.zhengjian.hr.model.Department;
-import com.zhengjian.hr.model.Nation;
 
 import java.util.List;
 
@@ -23,22 +22,24 @@ public interface DepartmentMapper {
     List<Department> getListWithChildrenByParentId(Integer parentId);
 
     /**
-     * 根据 departmentSearch（ id 除外）查询记录数
-     * @param department 作为查询条件的对象（ id 除外），为 null 则查询对象总数
-     * @return 记录数
+     * according to departmentSearch（ id except）Query records
+     *
+     * @param department The object of the query（ id except），for null Then query the total number of objects
+     * @return Records
      */
     Long count(Department department);
 
     /**
-     * 通过调用存储过程。
-     * 未使用，已经改成service实现
+     * By calling a stored procedure。
+     * Unused，Has been changed toserviceachieve
+     *
      * @param department
      */
     void add(Department department);
 
     /**
-     * 通过调用存储过程。
-     * 未使用，已经改成service实现
+     * By calling a stored procedure。
+     * Unused，Has been changed toserviceachieve
      * @param department
      */
     void deleteById(Department department);

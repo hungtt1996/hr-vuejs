@@ -36,8 +36,8 @@
                 return `${date.getHours()}:${date.getMinutes()}`;
             }
         },
-        directives: {/*这个是vue的自定义指令,官方文档有详细说明*/
-            // 发送消息后滚动到底部,这里无法使用原作者的方法，也未找到合理的方法解决，暂用setTimeout的方法模拟
+        directives: {/*this isvueCustom instructions,The official documentation has detailed instructions*/
+            // Scroll to the bottom after sending a message,The original author ’s method cannot be used here，Nor found a reasonable solution，Temporary usesetTimeoutMethod simulation
             'scroll-bottom'(el) {
                 //console.log(el.scrollTop);
                 setTimeout(function () {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        操作日志管理
+        Operation log management
     </div>
 </template>
 

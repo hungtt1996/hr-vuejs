@@ -34,7 +34,7 @@ public class EmployeeService {
         handleContractTerm(employee);
         int r = employeeMapper.insertSelective(employee);
         if (r == 1) {
-            // 获取关联信息
+            // Get related information
             Employee employeeWithAll = employeeMapper.selectWithAllByPrimaryKey(employee.getId());
             jmsMessagingTemplate.convertAndSend("employee.welcome", employeeWithAll);
         }
@@ -95,7 +95,7 @@ public class EmployeeService {
     }
 
     /**
-     * 处理合同期限
+     * Processing contract period
      *
      * @param employee
      */

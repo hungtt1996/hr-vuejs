@@ -27,7 +27,7 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
 
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-        // 根据请求地址，分析出该请求需要的角色
+        // According to the request address，Analyze the role required for the request
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
         List<Menu> allMenus = menuService.getListAllWithRoles();
         for (Menu menu : allMenus) {
@@ -37,12 +37,12 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
                 for (int i = 0; i < roles.size(); i++) {
                     roleNameArr[i] = roles.get(i).getName();
                 }
-                // 将返回值带入 MyAccessDecisionManager 执行之后的判断
+                // Bring the return value into MyAccessDecisionManager Judgment after execution
                 return SecurityConfig.createList(roleNameArr);
             }
         }
 
-        // 请求未匹配时返回一个特殊的角色名，表示需要登录后才能访问
+        // A special role name is returned when the request does not match，Indicates that you need to log in to access
         return SecurityConfig.createList("ROLE_LOGIN");
     }
 

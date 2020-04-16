@@ -22,9 +22,9 @@ public class DepartmentController {
     public RespBean add(@RequestBody Department department) {
         int r = departmentService.add(department);
         if (r == 1) {
-            return RespBean.ok("新增成功", department);
+            return RespBean.ok("added successfully", department);
         } else {
-            return RespBean.error("新增失败");
+            return RespBean.error("Add failed");
         }
     }
 
@@ -32,13 +32,13 @@ public class DepartmentController {
     public RespBean deleteById(@PathVariable Integer id) {
         int r = departmentService.deleteById(id);
         if (r == 1) {
-            return RespBean.ok("删除成功");
+            return RespBean.ok("successfully deleted");
         } else if (r == -1) {
-            return RespBean.error("删除失败，该部门下有子部门");
+            return RespBean.error("failed to delete，There are sub-departments under this department");
         } else if (r == -2) {
-            return RespBean.error("删除失败，该部门下有员工");
+            return RespBean.error("failed to delete，There are employees under this department");
         } else {
-            return RespBean.error("删除失败");
+            return RespBean.error("failed to delete");
         }
     }
 
@@ -46,9 +46,9 @@ public class DepartmentController {
     public RespBean edit(@RequestBody Department department) {
         int r = departmentService.edit(department);
         if (r == 1) {
-            return RespBean.ok("编辑成功");
+            return RespBean.ok("Edit successfully");
         } else {
-            return RespBean.error("编辑失败");
+            return RespBean.error("Edit failed");
         }
     }
 

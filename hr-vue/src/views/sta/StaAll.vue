@@ -1,6 +1,6 @@
 <template>
     <div>
-        综合信息统计
+        Comprehensive Information Statistics
     </div>
 </template>
 

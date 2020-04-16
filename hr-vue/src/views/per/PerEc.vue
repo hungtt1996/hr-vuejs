@@ -1,6 +1,6 @@
 <template>
     <div>
-        员工奖惩
+        Employee rewards and punishments
     </div>
 </template>
 

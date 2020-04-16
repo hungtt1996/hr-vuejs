@@ -23,7 +23,7 @@ public class MenuService {
     MenuRoleMapper menuRoleMapper;
 
     /**
-     * 获取当前用户的菜单
+     * Get the current user's menu
      *
      * @return
      */
@@ -32,11 +32,11 @@ public class MenuService {
     }
 
     /**
-     * 获取所有菜单
+     * Get all menus
      *
      * @return
      */
-    // @Cacheable // 菜单缓存
+    // @Cacheable // Menu cache
     public List<Menu> getListAllWithRoles() {
         return menuMapper.getListAllWithRoles();
     }

@@ -5,7 +5,7 @@
             <p class="name">{{user.name}}</p>
         </header>
         <footer>
-            <input class="search" type="text" placeholder="输入姓名搜索" v-model="$store.state.searchData.name"
+            <input class="search" type="text" placeholder="Enter name search" v-model="$store.state.searchData.name"
                    v-on:keydown.enter="handleSearch">
         </footer>
     </div>
@@ -34,7 +34,7 @@
         .avatar {
             width: 40px;
             height: 40px;
-            vertical-align: middle; /*这个是图片和文字居中对齐*/
+            vertical-align: middle; /*This is the picture and text center aligned*/
         }
 
         .name {
@@ -50,7 +50,7 @@
             padding: 0 10px;
             border: 1px solid #3a3a3a;
             border-radius: 4px;
-            outline: none; /*鼠标点击后不会出现蓝色边框*/
+            outline: none; /*No blue border appears after mouse click*/
             color: #FFF;
             width: 100%;
             box-sizing: border-box;

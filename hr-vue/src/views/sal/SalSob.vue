@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="salary-toolbar-container">
-            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">新增工资账套</el-button>
-            <el-button type="success" icon="el-icon-refresh" @click="handleRefresh">刷新</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">New salary account set</el-button>
+            <el-button type="success" icon="el-icon-refresh" @click="handleRefresh">Refresh</el-button>
         </div>
         <div>
             <el-table
                     class="salary-table"
                     v-loading="loading"
-                    element-loading-text="正在加载..."
+                    element-loading-text="loading..."
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
                     :data="salaries"
@@ -16,28 +16,28 @@
                     border
                     @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55"></el-table-column>
-                <el-table-column prop="name" label="账套名称" width="120"></el-table-column>
-                <el-table-column prop="basicSalary" label="基本工资" width="80"></el-table-column>
-                <el-table-column prop="trafficSalary" label="交通补助" width="80"></el-table-column>
-                <el-table-column prop="lunchSalary" label="午餐补助" width="80"></el-table-column>
-                <el-table-column prop="bonus" label="奖金" width="60"></el-table-column>
-                <el-table-column prop="createDate" label="创建时间" width="140"></el-table-column>
-                <el-table-column label="养老金" align="center">
-                    <el-table-column prop="pensionPer" label="比率" width="60"></el-table-column>
-                    <el-table-column prop="pensionBase" label="基数" width="60"></el-table-column>
+                <el-table-column prop="name" label="A / C set name" width="120"></el-table-column>
+                <el-table-column prop="basicSalary" label="Basic wage" width="80"></el-table-column>
+                <el-table-column prop="trafficSalary" label="Transport Allowance" width="80"></el-table-column>
+                <el-table-column prop="lunchSalary" label="Lunch allowance" width="80"></el-table-column>
+                <el-table-column prop="bonus" label="bonus" width="60"></el-table-column>
+                <el-table-column prop="createDate" label="Creation time" width="140"></el-table-column>
+                <el-table-column label="pension" align="center">
+                    <el-table-column prop="pensionPer" label="ratio" width="60"></el-table-column>
+                    <el-table-column prop="pensionBase" label="Cardinality" width="60"></el-table-column>
                 </el-table-column>
-                <el-table-column label="医疗保险" align="center">
-                    <el-table-column prop="medicalPer" label="比率" width="60"></el-table-column>
-                    <el-table-column prop="medicalBase" label="基数" width="60"></el-table-column>
+                <el-table-column label="medical insurance" align="center">
+                    <el-table-column prop="medicalPer" label="ratio" width="60"></el-table-column>
+                    <el-table-column prop="medicalBase" label="Cardinality" width="60"></el-table-column>
                 </el-table-column>
-                <el-table-column label="公积金" align="center">
-                    <el-table-column prop="accumulationFundPer" label="比率" width="60"></el-table-column>
-                    <el-table-column prop="accumulationFundBase" label="基数" width="60"></el-table-column>
+                <el-table-column label="Provident Fund" align="center">
+                    <el-table-column prop="accumulationFundPer" label="ratio" width="60"></el-table-column>
+                    <el-table-column prop="accumulationFundBase" label="Cardinality" width="60"></el-table-column>
                 </el-table-column>
-                <el-table-column label="操作" align="center">
+                <el-table-column label="operating" align="center">
                     <template slot-scope="scope">
-                        <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-                        <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+                        <el-button size="mini" @click="handleEdit(scope.row)">edit</el-button>
+                        <el-button size="mini" type="danger" @click="handleDelete(scope.row)">delete</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -45,7 +45,7 @@
                     class="salary-deletemulti-btn"
                     type="danger"
                     :disabled="this.multipleSelection.length == 0"
-                    @click="handleDeleteMulti">批量删除
+                    @click="handleDeleteMulti">batch deletion
             </el-button>
         </div>
         <el-dialog
@@ -56,15 +56,15 @@
                 <el-steps direction="vertical" :active="activeStepIndex">
                     <el-step :title="name" v-for="(name,index) in salaryLabel" :key="index"></el-step>
                 </el-steps>
-                <el-input v-model="salary[title]" :placeholder="'请输入'+salaryLabel[index]+'...'"
+                <el-input v-model="salary[title]" :placeholder="'please enter'+salaryLabel[index]+'...'"
                           v-for="(value,title,index) in salary"
                           :key="index" v-show="activeStepIndex==index" style="width: 50%"></el-input>
             </div>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" v-show="btnPreVisible" @click="handlePreStep">上一步</el-button>
-                <el-button type="primary" v-show="btnNextVisible" @click="handleNextStep">下一步</el-button>
-                <el-button type="primary" v-show="btnConfirmVisible" @click="handleAddEditConfirm">确 定</el-button>
+                <el-button @click="dialogVisible = false">take Dispel</el-button>
+                <el-button type="primary" v-show="btnPreVisible" @click="handlePreStep">Previous</el-button>
+                <el-button type="primary" v-show="btnNextVisible" @click="handleNextStep">Next step</el-button>
+                <el-button type="primary" v-show="btnConfirmVisible" @click="handleAddEditConfirm">Indeed set</el-button>
             </span>
         </el-dialog>
     </div>
@@ -80,7 +80,7 @@
                 dialogTitle: '',
                 dialogVisible: false,
                 salary: {
-                    // 顺序需要与 salaryLabel 对应
+                    // The order needs to be with salaryLabel correspond
                     name: '',
                     basicSalary: 0,
                     trafficSalary: 0,
@@ -94,18 +94,18 @@
                     accumulationFundBase: 0
                 },
                 salaryLabel: [
-                    // 顺序需要与 salary 对应
-                    '账套名称',
-                    '基本工资',
-                    '交通补助',
-                    '午餐补助',
-                    '奖金',
-                    '养老金比率',
-                    '养老金基数',
-                    '医疗保险比率',
-                    '医疗保险基数',
-                    '公积金比率',
-                    '公积金基数'
+                    // The order needs to be with salary correspond
+                    'A / C set name',
+                    'Basic wage',
+                    'Transport Allowance',
+                    'Lunch allowance',
+                    'bonus',
+                    'Pension ratio',
+                    'Pension base',
+                    'Medical insurance ratio',
+                    'Medical insurance base',
+                    'Provident Fund Ratio',
+                    'Provident Fund Base'
                 ],
                 activeStepIndex: 0,
                 btnConfirmVisible: false,
@@ -146,7 +146,7 @@
             },
             initSalary() {
                 this.salary = {
-                    // 顺序需要与 salaryLabel 对应
+                    // The order needs to be with salaryLabel correspond
                     name: '',
                     basicSalary: 0,
                     trafficSalary: 0,
@@ -162,8 +162,8 @@
             },
             initSalaryTest() {
                 this.salary = {
-                    // 顺序需要与 salaryLabel 对应
-                    name: '测试工资账套',
+                    // The order needs to be with salaryLabel correspond
+                    name: 'Test payroll',
                     basicSalary: 8888,
                     trafficSalary: 500,
                     lunchSalary: 600,
@@ -182,14 +182,14 @@
             handleAdd() {
                 this.initSalary();
                 // this.initSalaryTest();
-                this.dialogTitle = '新增工资账套';
+                this.dialogTitle = 'New salary account set';
                 this.activeStepIndex = 0;
                 this.dialogVisible = true;
             },
             handleEdit(data) {
                 this.initSalary();
-                // 因为要求按顺序，所以不能用 Object.assign，需要手动设置
-                // Object.assign(this.salary, data);// 数据复制一份
+                // Because the requirements are in order，So it can't be used Object.assign，Need to set manually
+                // Object.assign(this.salary, data);// A copy of the data
                 this.salary.name = data.name;
                 this.salary.basicSalary = data.basicSalary;
                 this.salary.trafficSalary = data.trafficSalary;
@@ -202,7 +202,7 @@
                 this.salary.accumulationFundPer = data.accumulationFundPer;
                 this.salary.accumulationFundBase = data.accumulationFundBase;
                 this.salary.id = data.id;
-                this.dialogTitle = '编辑工资账套';
+                this.dialogTitle = 'Edit Pay Set';
                 this.activeStepIndex = 0;
                 this.dialogVisible = true;
             },
@@ -217,7 +217,7 @@
                 }
             },
             handleAddEditConfirm() {
-                // TODO 未加表单验证
+                // TODO No form verification
                 if (this.salary.id) {
                     this.putRequest("/salary/sob/edit", this.salary).then(resp => {
                         if (resp) {
@@ -235,9 +235,9 @@
                 }
             },
             handleDelete(data) {
-                this.$confirm('此操作将永久删除【' + data.name + '】工资账套, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm('This operation will be permanently deleted【' + data.name + '】Payroll, Whether to continue?', 'prompt', {
+                    confirmButtonText: 'determine',
+                    cancelButtonText: 'cancel',
                     type: 'warning'
                 }).then(() => {
                     this.deleteRequest("/salary/sob/deleteById/" + data.id).then(resp => {
@@ -248,14 +248,14 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: 'Undeleted'
                     });
                 });
             },
             handleDeleteMulti() {
-                this.$confirm('此操作将永久删除【' + this.multipleSelection.length + '】条记录, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm('This operation will be permanently deleted【' + this.multipleSelection.length + '】Records, Whether to continue?', 'prompt', {
+                    confirmButtonText: 'determine',
+                    cancelButtonText: 'cancel',
                     type: 'warning'
                 }).then(() => {
                     let ids = "";
@@ -273,7 +273,7 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: 'Undeleted'
                     });
                 });
             },

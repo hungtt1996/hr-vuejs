@@ -1,7 +1,6 @@
 package com.zhengjian.hr.controller;
 
 import com.zhengjian.hr.common.pojo.RespBean;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
     @GetMapping("/login")
-    // 1.用@CrossOrigin("*") // 2.用.authenticationEntryPoint，见MyWebSecurityConfigurerAdapter
+    // 1.use@CrossOrigin("*") // 2.use.authenticationEntryPoint，seeMyWebSecurityConfigurerAdapter
     public RespBean login() {
-        return RespBean.error("请先登录！");
+        return RespBean.error("please log in first！");
     }
 }

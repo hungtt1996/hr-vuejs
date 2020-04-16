@@ -1,6 +1,6 @@
 <template>
     <div>
-        月末处理
+        End of the month
     </div>
 </template>
 

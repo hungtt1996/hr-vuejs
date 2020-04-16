@@ -1,6 +1,6 @@
 <template>
     <div>
-        员工调薪
+        Employee salary adjustment
     </div>
 </template>
 

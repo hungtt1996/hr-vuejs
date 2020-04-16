@@ -1,6 +1,6 @@
 <template>
     <div>
-        员工积分统计
+        Employee points statistics
     </div>
 </template>
 

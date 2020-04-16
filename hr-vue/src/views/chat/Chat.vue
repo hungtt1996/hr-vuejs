@@ -1,5 +1,5 @@
 <template>
-    <!-- 基于 https://github.com/is-liyiwei/vue-Chat-demo 改造 -->
+    <!-- based on https://github.com/is-liyiwei/vue-Chat-demo Remodel -->
     <div id="app">
         <div class="sidebar">
             <card></card>
@@ -24,7 +24,7 @@
             return {}
         },
         mounted() {
-            this.$store.dispatch('initChatData'); // 初始化在线聊天的相关数据
+            this.$store.dispatch('initChatData'); // Initialize data related to online chat
         },
         components: {
             card,

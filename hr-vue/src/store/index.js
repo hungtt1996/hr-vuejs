@@ -6,8 +6,8 @@ import {getRequest} from "../utils/api";
 // import '../utils/stomp';
 // import SockJS from '../utils/sockjs';
 // import Stomp from '../utils/stomp';
-import SockJS from 'sockjs-client'; // 需要先 npm install sockjs-client
-import Stomp from 'stompjs'; // 需要先 npm install stompjs
+import SockJS from 'sockjs-client'; // Need first npm install sockjs-client
+import Stomp from 'stompjs'; // Need first npm install stompjs
 
 Vue.use(Vuex);
 
@@ -15,28 +15,28 @@ const now = new Date();
 
 const store = new Vuex.Store({
     state: {
-        routes: [], // 菜单
-        // 下面这些属性在线聊天模块用到
+        routes: [], // menu
+        // The following attributes are used in the online chat module
         stomp: null,
         searchData: {
             name: ''
-        }, // 搜索用户姓名
-        users: [], // 用户列表
-        isDot: {}, // 用户列表中显示小红点
-        currentUser: JSON.parse(window.sessionStorage.getItem("user")), // 当前登录用户
-        chatUser: null, // 聊天对象
-        chatMessages: {} // 聊天消息
+        }, // Search user name
+        users: [], // user list
+        isDot: {}, // A small red dot appears in the user list
+        currentUser: JSON.parse(window.sessionStorage.getItem("user")), // Currently logged in user
+        chatUser: null, // Chat with
+        chatMessages: {} // Chat message
     },
     mutations: {
-        // 初始化菜单（initMenu）时会被调用
+        // Initialize the menu（initMenu）Will be called
         initRoutes(state, data) {
             state.routes = data;
         },
-        // 初始化当前登录用户，登录成功之后会被调用
+        // Initialize the currently logged in user，Will be called after successful login
         initCurrentUser(state, user) {
             state.currentUser = user;
         },
-        // 初始化用户列表数据
+        // Initialize user list data
         initUsers(state) {
             getRequest("/chat/getUserList?name=" + state.searchData.name).then(resp => {
                 if (resp) {
@@ -44,27 +44,27 @@ const store = new Vuex.Store({
                 }
             });
         },
-        // 初始化聊天消息
+        // Initialize chat messages
         initChatMessages(state) {
-            // 从浏览器本地取
+            // Get locally from the browser
             let data = localStorage.getItem('hr-chat-messages');
             if (data) {
                 state.chatMessages = JSON.parse(data);
             }
         },
-        // 处理聊天对象，用户列表选择用户时会被调用
+        // Handle chat，User list will be called when selecting a user
         handleChatUser(state, chatUser) {
-            // 必须要用 Vue.set 设值，否则不会被 Vue 自动检测到
+            // Must be used Vue.set Set value，Otherwise it will not be Vue Automatically detected
             Vue.set(state.isDot, state.currentUser.username + '#' + chatUser.username, false);
             state.chatUser = chatUser;
         },
-        // 处理聊天框中的消息（当前登录用户 currentUser.username 与聊天消息对象 message.to），发送和接收消息时会被调用
+        // Handling messages in the chat box（Currently logged in user currentUser.username Message object with chat message.to），Will be called when sending and receiving messages
         handleChatMessages(state, message) {
             // console.log("111---" + JSON.stringify(message));
             let key = state.currentUser.username + '#' + message.to;
             let mss = state.chatMessages[key];
             if (!mss) {
-                // 必须要用 Vue.set 设值，否则不会被 Vue 自动检测到
+                // Must be used Vue.set Set value，Otherwise it will not be Vue Automatically detected
                 // state.chatMessages[state.currentUser.username+'#'+message.to] = [];
                 Vue.set(state.chatMessages, key, []);
             }
@@ -76,26 +76,26 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        // 初始化在线聊天的 WebSocket 连接，并开始订阅并接收聊天消息，初始化菜单（initMenu）时会被调用
+        // Initiating online chat WebSocket connection，And start subscribing and receiving chat messages，Initialize the menu（initMenu）Will be called
         initChatConnect(context) {
             context.state.stomp = Stomp.over(new SockJS('/ws/ep'));
             context.state.stomp.connect({}, success => {
-                // 通过 /user/queue/chat 订阅消息，默认加了 /user 前缀
+                // by /user/queue/chat Subscribe to news，Added by default /user Prefix
                 context.state.stomp.subscribe('/user/queue/chat', msg => {
                     let chatMsg = JSON.parse(msg.body);
                     if (!context.state.chatUser || chatMsg.from != context.state.chatUser.username) {
                         Notification.info({
-                            title: '【' + chatMsg.fromName + '】发来一条消息',
+                            title: '【' + chatMsg.fromName + '】Sent a message',
                             message: chatMsg.content.length > 10 ? chatMsg.content.substr(0, 10) : chatMsg.content,
                             position: 'bottom-right'
                         });
-                        // 必须要用 Vue.set 设值，否则不会被 Vue 自动检测到
+                        // Must be used Vue.set Set value，Otherwise it will not be Vue Automatically detected
                         Vue.set(context.state.isDot, context.state.currentUser.username + '#' + chatMsg.from, true);
                     }
 
                     let message = new Object();
                     message.self = false;
-                    message.to = chatMsg.from; // 注意：message.to 是指聊天框中与当前登录用户的聊天消息对象
+                    message.to = chatMsg.from; // note：message.to Refers to the chat message object in the chat box with the currently logged in user
                     message.content = chatMsg.content;
                     message.date = chatMsg.date;
                     context.commit('handleChatMessages', message);
@@ -104,23 +104,23 @@ const store = new Vuex.Store({
 
             })
         },
-        // 初始化在线聊天的相关数据，打开聊天页面时会被调用
+        // Initialize data related to online chat，Will be called when opening the chat page
         initChatData(context) {
-            // 初始化用户列表数据
+            // Initialize user list data
             context.commit('initUsers');
-            // 初始化聊天消息
+            // Initialize chat messages
             context.commit('initChatMessages');
         }
     }
 });
 
-// 监听 state.chatMessages 的变化，统一保存到浏览器本地
+// monitor state.chatMessages The change，Save to the browser locally
 store.watch(function (state) {
     return state.chatMessages
 }, function (val) {
     localStorage.setItem('hr-chat-messages', JSON.stringify(val));
 }, {
-    deep: true/*这个貌似是开启watch监测的判断,官方说明也比较模糊*/
+    deep: true/*This seems to be onwatchMonitoring judgment,The official description is also vague*/
 });
 
 export default store;

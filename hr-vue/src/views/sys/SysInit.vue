@@ -1,6 +1,6 @@
 <template>
     <div>
-        初始化数据库
+        Initialize the database
     </div>
 </template>
 

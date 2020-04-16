@@ -25,7 +25,7 @@ const routes = [
         children: [
             {
                 path: '/chat',
-                name: '在线聊天',
+                name: 'Online chat',
                 component: Chat,
                 hidden: true
             }

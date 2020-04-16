@@ -47,7 +47,7 @@
             }
         }
 
-        li.active { /*注意这个是.不是冒号:*/
+        li.active { /*Note this is.Not a colon:*/
             background-color: rgba(255, 255, 255, 0.1);
         }
 

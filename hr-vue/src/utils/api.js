@@ -13,17 +13,17 @@ axios.interceptors.response.use(success => {
     return success.data;
 }, error => {
     if (error.response.status == 504 || error.response.status == 404) {
-        Message.error({message: '服务器被吃了( ╯□╰ )'})
+        Message.error({message: 'The server was eaten( ╯□╰ )'})
     } else if (error.response.status == 403) {
-        Message.error({message: '权限不足，请联系管理员'})
+        Message.error({message: 'Insufficient permissions，Please contact the administrator'})
     } else if (error.response.status == 401) {
-        Message.error({message: '尚未登录，请登录'})
+        Message.error({message: 'Not yet logged in，please sign in'})
         router.replace('/');
     } else {
         if (error.response.data.msg) {
             Message.error({message: error.response.data.msg})
         } else {
-            Message.error({message: '未知错误'})
+            Message.error({message: 'unknown mistake'})
         }
     }
     return;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        员工资料
+        Employee information
     </div>
 </template>
 

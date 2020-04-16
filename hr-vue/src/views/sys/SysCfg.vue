@@ -1,6 +1,6 @@
 <template>
     <div>
-        系统管理
+        System Management
     </div>
 </template>
 

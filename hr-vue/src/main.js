@@ -6,11 +6,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-import {getRequest} from "./utils/api";
-import {postRequest} from "./utils/api";
-import {postKeyValueRequest} from "./utils/api";
-import {putRequest} from "./utils/api";
-import {deleteRequest} from "./utils/api";
+import {deleteRequest, getRequest, postKeyValueRequest, postRequest, putRequest} from "./utils/api";
 import {initMenu} from "./utils/menus";
 
 Vue.prototype.getRequest = getRequest;
@@ -31,7 +27,7 @@ router.beforeEach((to, from, next) => {
             initMenu(router, store);
             next();
         } else {
-            // 未登陆，跳转到登录页面，并带上需要跳转的目标地址
+            // Not logged in，Jump to the login page，And bring the target address to be jumped
             next('/?redirect=' + to.path);
         }
     }

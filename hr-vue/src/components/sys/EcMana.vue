@@ -1,6 +1,6 @@
 <template>
     <div>
-        奖惩规则
+        Reward and punishment rules
     </div>
 </template>
 

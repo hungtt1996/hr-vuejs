@@ -3,7 +3,7 @@
         <div>
             <el-input
                     class="department-search-name"
-                    placeholder="输入部门名称搜索"
+                    placeholder="Enter department name search"
                     prefix-icon="el-icon-search"
                     v-model="filterText">
             </el-input>
@@ -12,7 +12,7 @@
             <el-tree
                     class="department-tree"
                     v-loading="loading"
-                    element-loading-text="正在加载..."
+                    element-loading-text="loading..."
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
                     :data="departments"
@@ -27,19 +27,19 @@
                                 class="department-tree-btn"
                                 type="primary"
                                 size="mini"
-                                @click="handleAdd(data)">新增
+                                @click="handleAdd(data)">New
                             </el-button>
                         <el-button
                                 class="department-tree-btn"
                                 type="primary"
                                 size="mini"
-                                @click="handleEdit(data)">编辑
+                                @click="handleEdit(data)">edit
                         </el-button>
                         <el-button
                                 class="department-tree-btn"
                                 type="danger"
                                 size="mini"
-                                @click="handleDelete(data)">删除
+                                @click="handleDelete(data)">delete
                         </el-button>
                     </span>
                   </span>
@@ -53,7 +53,7 @@
                 <table class="department-table">
                     <tr v-if="!department.id">
                         <td>
-                            <el-tag>上级部门</el-tag>
+                            <el-tag>Higher office</el-tag>
                         </td>
                         <td>
                             {{this.department.parentName}}
@@ -61,17 +61,17 @@
                     </tr>
                     <tr>
                         <td>
-                            <el-tag>部门名称</el-tag>
+                            <el-tag>Department name</el-tag>
                         </td>
                         <td>
-                            <el-input v-model="department.name" placeholder="请输入部门名称"></el-input>
+                            <el-input v-model="department.name" placeholder="Please enter the department name"></el-input>
                         </td>
                     </tr>
                 </table>
             </div>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="handleAddEditConfirm">确 定</el-button>
+                <el-button @click="dialogVisible = false">take Dispel</el-button>
+                <el-button type="primary" @click="handleAddEditConfirm">Indeed set</el-button>
               </span>
         </el-dialog>
     </div>
@@ -92,8 +92,8 @@
                 dialogVisible: false,
                 department: {
                     name: '',
-                    parentId: null, // 新增时需要
-                    parentName: '' // 新增时需要显示
+                    parentId: null, // Required when adding
+                    parentName: '' // Need to display when adding
                 },
                 loading: false
             };
@@ -128,7 +128,7 @@
                 return data.name.indexOf(value) !== -1;
             },
             handleTreeAdd(departments, addData) {
-                // 将 addData 加到 treeData 对应的父节点上
+                // will addData Add to treeData On the corresponding parent node
                 for (let i = 0; i < departments.length; i++) {
                     let data = departments[i];
                     if (data.id == addData.parentId) {
@@ -138,26 +138,26 @@
                         }
                         return;
                     } else {
-                        // 递归处理 children
+                        // Recursive processing children
                         this.handleTreeAdd(data.children, addData);
                     }
                 }
             },
             handleTreeEdit(departments, editData) {
-                // 将 editData 更新到 departments 对应的节点上
+                // will editData Update to departments On the corresponding node
                 for (let i = 0; i < departments.length; i++) {
                     let data = departments[i];
                     if (data.id == editData.id) {
                         data.name = editData.name;
                         return;
                     } else {
-                        // 递归处理 children
+                        // Recursive processing children
                         this.handleTreeEdit(data.children, editData);
                     }
                 }
             },
             handleTreeDelete(dataParent, departments, deleteDataId) {
-                // 将 deleteDataId 对应的节点从 departments 中删除
+                // will deleteDataId The corresponding node from departments Delete
                 for (let i = 0; i < departments.length; i++) {
                     let data = departments[i];
                     if (data.id == deleteDataId) {
@@ -175,13 +175,13 @@
                 this.initDepartment();
                 this.department.parentId = data.id;
                 this.department.parentName = data.name;
-                this.dialogTitle = '新增部门';
+                this.dialogTitle = 'New department';
                 this.dialogVisible = true;
             },
             handleEdit(data) {
                 this.initDepartment();
-                Object.assign(this.department, data);// 数据复制一份
-                this.dialogTitle = '编辑部门';
+                Object.assign(this.department, data);// A copy of the data
+                this.dialogTitle = 'Editorial department';
                 this.dialogVisible = true;
             },
             handleAddEditConfirm() {
@@ -189,7 +189,7 @@
                     if (this.department.id) {
                         this.putRequest("/system/basic/department/edit", this.department).then(resp => {
                             if (resp) {
-                                // 只处理当前编辑的数据，不初始化整个 departments
+                                // Only process the currently edited data，Don't initialize the whole departments
                                 this.handleTreeEdit(this.departments, this.department);
                                 this.dialogVisible = false;
                             }
@@ -198,38 +198,38 @@
                         if (this.department.parentId) {
                             this.postRequest("/system/basic/department/add", this.department).then(resp => {
                                 if (resp) {
-                                    // 只处理当前新增的数据，不初始化整个 departments
+                                    // Only process the newly added data，Don't initialize the whole departments
                                     this.handleTreeAdd(this.departments, resp.obj);
                                     this.dialogVisible = false;
                                 }
                             });
                         } else {
-                            this.$message.error('上级部门不能为空');
+                            this.$message.error('The superior department cannot be empty');
                         }
                     }
                 } else {
-                    this.$message.error('部门名称不能为空');
+                    this.$message.error('Department name cannot be empty');
                 }
             },
             handleDelete(data) {
                 if (data.isParent) {
-                    this.$message.error("删除失败，父部门不能删除");
+                    this.$message.error("failed to delete，Parent department cannot be deleted");
                 } else {
-                    this.$confirm('此操作将永久删除【' + data.name + '】部门, 是否继续?', '提示', {
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
+                    this.$confirm('This operation will be permanently deleted【' + data.name + '】department, Whether to continue?', 'prompt', {
+                        confirmButtonText: 'determine',
+                        cancelButtonText: 'cancel',
                         type: 'warning'
                     }).then(() => {
                         this.deleteRequest("/system/basic/department/deleteById/" + data.id).then(resp => {
                             if (resp) {
-                                // 只处理当前删除的数据，不初始化整个 departments
+                                // Only process the currently deleted data，Don't initialize the whole departments
                                 this.handleTreeDelete(null, this.departments, data.id);
                             }
                         });
                     }).catch(() => {
                         this.$message({
                             type: 'info',
-                            message: '已取消删除'
+                            message: 'Undeleted'
                         });
                     });
                 }

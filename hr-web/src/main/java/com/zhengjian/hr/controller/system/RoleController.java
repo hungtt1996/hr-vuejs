@@ -26,9 +26,9 @@ public class RoleController {
     public RespBean add(@RequestBody Role role) {
         int r = roleService.add(role);
         if (r == 1) {
-            return RespBean.ok("新增成功");
+            return RespBean.ok("added successfully");
         } else {
-            return RespBean.error("新增失败");
+            return RespBean.error("Add failed");
         }
     }
 
@@ -36,9 +36,9 @@ public class RoleController {
     public RespBean deleteById(@PathVariable Integer id) {
         int r = roleService.deleteById(id);
         if (r == 1) {
-            return RespBean.ok("删除成功");
+            return RespBean.ok("successfully deleted");
         } else {
-            return RespBean.error("删除失败");
+            return RespBean.error("failed to delete");
         }
     }
 
@@ -46,9 +46,9 @@ public class RoleController {
     public RespBean editRoleMenu(Integer rid, Integer[] mids) {
         boolean r = roleService.editRoleMenu(rid, mids);
         if (r) {
-            return RespBean.ok("编辑成功");
+            return RespBean.ok("Edit successfully");
         } else {
-            return RespBean.error("编辑失败");
+            return RespBean.error("Edit failed");
         }
     }
 

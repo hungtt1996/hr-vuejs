@@ -43,9 +43,9 @@ public class EmployeeController {
     public RespBean add(@RequestBody Employee employee) {
         int r = employeeService.add(employee);
         if (r == 1) {
-            return RespBean.ok("新增成功");
+            return RespBean.ok("added successfully");
         } else {
-            return RespBean.error("新增失败");
+            return RespBean.error("Add failed");
         }
     }
 
@@ -53,9 +53,9 @@ public class EmployeeController {
     public RespBean deleteById(@PathVariable Integer id) {
         int r = employeeService.deleteById(id);
         if (r == 1) {
-            return RespBean.ok("删除成功");
+            return RespBean.ok("successfully deleted");
         } else {
-            return RespBean.error("删除失败");
+            return RespBean.error("failed to delete");
         }
     }
 
@@ -63,9 +63,9 @@ public class EmployeeController {
     public RespBean deleteByIds(Integer[] ids) {
         int r = employeeService.deleteByIds(ids);
         if (r == ids.length) {
-            return RespBean.ok("删除成功");
+            return RespBean.ok("successfully deleted");
         } else {
-            return RespBean.error("删除失败");
+            return RespBean.error("failed to delete");
         }
     }
 
@@ -73,15 +73,15 @@ public class EmployeeController {
     public RespBean edit(@RequestBody Employee employee) {
         int r = employeeService.edit(employee);
         if (r == 1) {
-            return RespBean.ok("编辑成功");
+            return RespBean.ok("Edit successfully");
         } else {
-            return RespBean.error("编辑失败");
+            return RespBean.error("Edit failed");
         }
     }
 
     @GetMapping("/getPage")
     public RespPageBean getPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, Employee employee, Date[] beginDateScope) {
-        // Date 需要 DateConverter 才能传过来
+        // Date need DateConverter To pass
         return employeeService.getPage(page, size, employee, beginDateScope);
     }
 
@@ -127,8 +127,8 @@ public class EmployeeController {
     public RespBean doImport(MultipartFile file) throws IOException {
         List<Employee> employeeList = POIUtils.excel2Employee(file, nationService.getListAll(), politicsStatusService.getListAll(), departmentService.getListAll(), positionService.getListAll(), jobTitleService.getListAll());
         if (employeeService.add(employeeList) == employeeList.size()) {
-            return RespBean.ok("导入成功");
+            return RespBean.ok("Import succeeded");
         }
-        return RespBean.error("导入失败");
+        return RespBean.error("Import failed");
     }
 }

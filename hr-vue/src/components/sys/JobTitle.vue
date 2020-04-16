@@ -3,12 +3,12 @@
         <div>
             <el-input
                     class="jobtitle-add-name"
-                    placeholder="请输入职称名称"
+                    placeholder="Please enter the title"
                     prefix-icon="el-icon-plus"
                     v-model="jobTitleAdd.name"
                     @keydown.enter.native="handleAdd">
             </el-input>
-            <el-select class="jobtitle-add-level" v-model="jobTitleAdd.level" placeholder="请选择职称等级">
+            <el-select class="jobtitle-add-level" v-model="jobTitleAdd.level" placeholder="Please select the title level">
                 <el-option
                         v-for="item in levels"
                         :key="item"
@@ -16,13 +16,13 @@
                         :value="item">
                 </el-option>
             </el-select>
-            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">新增职称</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">New job title</el-button>
         </div>
         <div>
             <el-table
                     class="jobtitle-table"
                     v-loading="loading"
-                    element-loading-text="正在加载..."
+                    element-loading-text="loading..."
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
                     :data="jobTitles"
@@ -31,20 +31,20 @@
                     size="mini"
                     @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55"></el-table-column>
-                <el-table-column prop="id" label="编号" width="60"></el-table-column>
-                <el-table-column prop="name" label="职称名称" width="180"></el-table-column>
-                <el-table-column prop="level" label="职称等级" width="100"></el-table-column>
-                <el-table-column prop="createDate" label="创建时间" width="180"></el-table-column>
-                <el-table-column label="是否启用" width="100">
+                <el-table-column prop="id" label="Numbering" width="60"></el-table-column>
+                <el-table-column prop="name" label="Job title" width="180"></el-table-column>
+                <el-table-column prop="level" label="Title level" width="100"></el-table-column>
+                <el-table-column prop="createDate" label="Creation time" width="180"></el-table-column>
+                <el-table-column label="Whether to enable" width="100">
                     <template slot-scope="scope">
-                        <el-tag type="success" v-if="scope.row.enabled">已启用</el-tag>
-                        <el-tag type="danger" v-else>未启用</el-tag>
+                        <el-tag type="success" v-if="scope.row.enabled">activated</el-tag>
+                        <el-tag type="danger" v-else>Not activated</el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" align="center">
+                <el-table-column label="operating" align="center">
                     <template slot-scope="scope">
-                        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除
+                        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">edit</el-button>
+                        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">delete
                         </el-button>
                     </template>
                 </el-table-column>
@@ -53,29 +53,29 @@
                     class="jobtitle-deletemulti-btn"
                     type="danger"
                     :disabled="this.multipleSelection.length == 0"
-                    @click="handleDeleteMulti">批量删除
+                    @click="handleDeleteMulti">batch deletion
             </el-button>
         </div>
         <el-dialog
-                title="编辑职称"
+                title="Editor title"
                 :visible.sync="dialogVisible"
                 width="30%">
             <div>
                 <table class="jobtitle-edit-table">
                     <tr>
                         <td>
-                            <el-tag>职称名称</el-tag>
+                            <el-tag>Job title</el-tag>
                         </td>
                         <td>
-                            <el-input v-model="jobTitleEdit.name" placeholder="请输入职称名称"></el-input>
+                            <el-input v-model="jobTitleEdit.name" placeholder="Please enter the title"></el-input>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <el-tag>职称等级</el-tag>
+                            <el-tag>Title level</el-tag>
                         </td>
                         <td>
-                            <el-select v-model="jobTitleEdit.level" placeholder="请选择职称等级">
+                            <el-select v-model="jobTitleEdit.level" placeholder="Please select the title level">
                                 <el-option
                                         v-for="item in levels"
                                         :key="item"
@@ -87,21 +87,21 @@
                     </tr>
                     <tr>
                         <td>
-                            <el-tag>是否启用</el-tag>
+                            <el-tag>Whether to enable</el-tag>
                         </td>
                         <td>
                             <el-switch
                                     v-model="jobTitleEdit.enabled"
-                                    active-text="启用"
-                                    inactive-text="禁用">
+                                    active-text="Enable"
+                                    inactive-text="Disable">
                             </el-switch>
                         </td>
                     </tr>
                 </table>
             </div>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="handleEditConfirm">确 定</el-button>
+                <el-button @click="dialogVisible = false">take Dispel</el-button>
+                <el-button type="primary" @click="handleEditConfirm">Indeed set</el-button>
             </span>
         </el-dialog>
     </div>
@@ -113,11 +113,11 @@
         data() {
             return {
                 levels: [
-                    '正高级',
-                    '副高级',
-                    '中级',
-                    '初级',
-                    '员级',
+                    'Positive Senior',
+                    'Deputy Senior',
+                    'intermediate',
+                    'primary',
+                    'Staff',
                 ],
                 jobTitleAdd: {
                     name: '',
@@ -169,11 +169,11 @@
                         }
                     });
                 } else {
-                    this.$message.error('职称名称和职称等级不能为空');
+                    this.$message.error('Title and title level cannot be empty');
                 }
             },
             handleEdit(index, data) {
-                Object.assign(this.jobTitleEdit, data);// 数据复制一份
+                Object.assign(this.jobTitleEdit, data);// A copy of the data
                 this.dialogVisible = true;
             },
             handleEditConfirm() {
@@ -186,13 +186,13 @@
                         }
                     });
                 } else {
-                    this.$message.error('职称名称和职称等级不能为空');
+                    this.$message.error('Title and title level cannot be empty');
                 }
             },
             handleDelete(index, data) {
-                this.$confirm('此操作将永久删除【' + data.name + '】职称, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm('This operation will be permanently deleted【' + data.name + '】job title, Whether to continue?', 'prompt', {
+                    confirmButtonText: 'determine',
+                    cancelButtonText: 'cancel',
                     type: 'warning'
                 }).then(() => {
                     this.deleteRequest("/system/basic/jobTitle/deleteById/" + data.id).then(resp => {
@@ -203,14 +203,14 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: 'Undeleted'
                     });
                 });
             },
             handleDeleteMulti() {
-                this.$confirm('此操作将永久删除【' + this.multipleSelection.length + '】条记录, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm('This operation will be permanently deleted【' + this.multipleSelection.length + '】Records, Whether to continue?', 'prompt', {
+                    confirmButtonText: 'determine',
+                    cancelButtonText: 'cancel',
                     type: 'warning'
                 }).then(() => {
                     let ids = "";
@@ -228,7 +228,7 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: 'Undeleted'
                     });
                 });
             },

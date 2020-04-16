@@ -19,35 +19,35 @@ import java.util.List;
 
 public class POIUtils {
     public static ResponseEntity<byte[]> employee2Excel(List<Employee> employeeList) {
-        //1. 创建一个 Excel 文档
+        //1. Create Excel Doc
         HSSFWorkbook workbook = new HSSFWorkbook();
-        //2. 创建文档摘要
+        //2. Create a document summary
         workbook.createInformationProperties();
-        //3. 获取并配置文档信息
+        //3. Obtain and configure document information
         DocumentSummaryInformation docInfo = workbook.getDocumentSummaryInformation();
-        //文档类别
-        docInfo.setCategory("员工信息");
-        //文档管理员
+        //Document category
+        docInfo.setCategory("employee information");
+        //Document administrator
         docInfo.setManager("zhengjian");
-        //设置公司信息
-        docInfo.setCompany("XXX 公司");
-        //4. 获取文档摘要信息
+        //Set up company information
+        docInfo.setCompany("XXX the company");
+        //4. Get document summary information
         SummaryInformation summInfo = workbook.getSummaryInformation();
-        //文档标题
-        summInfo.setTitle("员工信息表");
-        //文档作者
+        //Document title
+        summInfo.setTitle("Employee Information Form");
+        //Document author
         summInfo.setAuthor("zhengjian");
-        // 文档备注
-        summInfo.setComments("本文档由 zhengjian 提供");
-        //5. 创建样式
-        //创建标题行的样式
+        // Document notes
+        summInfo.setComments("This document consists of zhengjian provide");
+        //5. Create style
+        //Create a header line style
         HSSFCellStyle headerStyle = workbook.createCellStyle();
         headerStyle.setFillForegroundColor(IndexedColors.YELLOW.index);
         headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         HSSFCellStyle dateCellStyle = workbook.createCellStyle();
         dateCellStyle.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy"));
-        HSSFSheet sheet = workbook.createSheet("员工信息表");
-        //设置列的宽度
+        HSSFSheet sheet = workbook.createSheet("Employee Information Form");
+        //Set the width of the column
         sheet.setColumnWidth(0, 5 * 256);
         sheet.setColumnWidth(1, 12 * 256);
         sheet.setColumnWidth(2, 10 * 256);
@@ -73,83 +73,83 @@ public class POIUtils {
         sheet.setColumnWidth(22, 14 * 256);
         sheet.setColumnWidth(23, 15 * 256);
         sheet.setColumnWidth(24, 15 * 256);
-        //6. 创建标题行
+        //6. Create a header row
         HSSFRow r0 = sheet.createRow(0);
         HSSFCell c0 = r0.createCell(0);
-        c0.setCellValue("编号");
+        c0.setCellValue("Numbering");
         c0.setCellStyle(headerStyle);
         HSSFCell c1 = r0.createCell(1);
         c1.setCellStyle(headerStyle);
-        c1.setCellValue("姓名");
+        c1.setCellValue("Name");
         HSSFCell c2 = r0.createCell(2);
         c2.setCellStyle(headerStyle);
-        c2.setCellValue("工号");
+        c2.setCellValue("Job number");
         HSSFCell c3 = r0.createCell(3);
         c3.setCellStyle(headerStyle);
-        c3.setCellValue("性别");
+        c3.setCellValue("gender");
         HSSFCell c4 = r0.createCell(4);
         c4.setCellStyle(headerStyle);
-        c4.setCellValue("出生日期");
+        c4.setCellValue("date of birth");
         HSSFCell c5 = r0.createCell(5);
         c5.setCellStyle(headerStyle);
-        c5.setCellValue("身份证号码");
+        c5.setCellValue("identification number");
         HSSFCell c6 = r0.createCell(6);
         c6.setCellStyle(headerStyle);
-        c6.setCellValue("婚姻状况");
+        c6.setCellValue("marital status");
         HSSFCell c7 = r0.createCell(7);
         c7.setCellStyle(headerStyle);
-        c7.setCellValue("民族");
+        c7.setCellValue("Nation");
         HSSFCell c8 = r0.createCell(8);
         c8.setCellStyle(headerStyle);
-        c8.setCellValue("籍贯");
+        c8.setCellValue("Hometown");
         HSSFCell c9 = r0.createCell(9);
         c9.setCellStyle(headerStyle);
-        c9.setCellValue("政治面貌");
+        c9.setCellValue("political status");
         HSSFCell c10 = r0.createCell(10);
         c10.setCellStyle(headerStyle);
-        c10.setCellValue("电话号码");
+        c10.setCellValue("telephone number");
         HSSFCell c11 = r0.createCell(11);
         c11.setCellStyle(headerStyle);
-        c11.setCellValue("联系地址");
+        c11.setCellValue("contact address");
         HSSFCell c12 = r0.createCell(12);
         c12.setCellStyle(headerStyle);
-        c12.setCellValue("所属部门");
+        c12.setCellValue("Department");
         HSSFCell c13 = r0.createCell(13);
         c13.setCellStyle(headerStyle);
-        c13.setCellValue("职称");
+        c13.setCellValue("job title");
         HSSFCell c14 = r0.createCell(14);
         c14.setCellStyle(headerStyle);
-        c14.setCellValue("职位");
+        c14.setCellValue("position");
         HSSFCell c15 = r0.createCell(15);
         c15.setCellStyle(headerStyle);
-        c15.setCellValue("聘用形式");
+        c15.setCellValue("Employment form");
         HSSFCell c16 = r0.createCell(16);
         c16.setCellStyle(headerStyle);
-        c16.setCellValue("最高学历");
+        c16.setCellValue("highest education");
         HSSFCell c17 = r0.createCell(17);
         c17.setCellStyle(headerStyle);
-        c17.setCellValue("专业");
+        c17.setCellValue("profession");
         HSSFCell c18 = r0.createCell(18);
         c18.setCellStyle(headerStyle);
-        c18.setCellValue("毕业院校");
+        c18.setCellValue("graduated school");
         HSSFCell c19 = r0.createCell(19);
         c19.setCellStyle(headerStyle);
-        c19.setCellValue("入职日期");
+        c19.setCellValue("Entry date");
         HSSFCell c20 = r0.createCell(20);
         c20.setCellStyle(headerStyle);
-        c20.setCellValue("在职状态");
+        c20.setCellValue("Working status");
         HSSFCell c21 = r0.createCell(21);
         c21.setCellStyle(headerStyle);
-        c21.setCellValue("电子邮箱");
+        c21.setCellValue("E-mail");
         HSSFCell c22 = r0.createCell(22);
         c22.setCellStyle(headerStyle);
-        c22.setCellValue("合同期限(年)");
+        c22.setCellValue("Contract period(year)");
         HSSFCell c23 = r0.createCell(23);
         c23.setCellStyle(headerStyle);
-        c23.setCellValue("合同起始日期");
+        c23.setCellValue("Contract start date");
         HSSFCell c24 = r0.createCell(24);
         c24.setCellStyle(headerStyle);
-        c24.setCellValue("合同终止日期");
+        c24.setCellValue("Contract termination date");
         for (int i = 0; i < employeeList.size(); i++) {
             Employee emp = employeeList.get(i);
             HSSFRow row = sheet.createRow(i + 1);
@@ -195,7 +195,7 @@ public class POIUtils {
         HttpHeaders headers = new HttpHeaders();
         try {
             workbook.write(baos);
-            headers.setContentDispositionFormData("attachment", new String("员工表.xls".getBytes("UTF-8"), "ISO-8859-1"));
+            headers.setContentDispositionFormData("attachment", new String("Employee table.xls".getBytes("UTF-8"), "ISO-8859-1"));
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         } catch (IOException e) {
             e.printStackTrace();
@@ -204,7 +204,7 @@ public class POIUtils {
     }
 
     /**
-     * Excel 解析成 员工数据集合
+     * Excel Resolve to Employee data collection
      *
      * @param file
      * @param nations
@@ -218,31 +218,31 @@ public class POIUtils {
         List<Employee> employeeList = new ArrayList<>();
         Employee employee = null;
         try {
-            //1. 创建一个 workbook 对象
+            //1. Create workbook Object
             HSSFWorkbook workbook = new HSSFWorkbook(file.getInputStream());
-            //2. 获取 workbook 中表单的数量
+            //2. Obtain workbook Number of forms in
             int numberOfSheets = workbook.getNumberOfSheets();
             for (int i = 0; i < numberOfSheets; i++) {
-                //3. 获取表单
+                //3. Get the form
                 HSSFSheet sheet = workbook.getSheetAt(i);
-                //4. 获取表单中的行数
+                //4. Get the number of rows in the form
                 int physicalNumberOfRows = sheet.getPhysicalNumberOfRows();
                 for (int j = 0; j < physicalNumberOfRows; j++) {
-                    //5. 跳过标题行
+                    //5. Skip header line
                     if (j == 0) {
                         continue;
                     }
-                    //6. 获取行
+                    //6. Get row
                     HSSFRow row = sheet.getRow(j);
                     if (row == null) {
-                        continue;//防止数据中间有空行
+                        continue;//Prevent blank lines in the data
                     }
-                    //7. 获取列数
+                    //7. Get the number of columns
                     int physicalNumberOfCells = row.getPhysicalNumberOfCells();
-                    // TODO 数据还未加校验
+                    // TODO Data has not been verified
                     employee = new Employee();
                     for (int k = 0; k < physicalNumberOfCells; k++) {
-                        //跳过编号列
+                        //Skip the number column
                         if (k == 0) {
                             continue;
                         }

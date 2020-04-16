@@ -32,10 +32,10 @@ public class RoleService {
     }
 
     /**
-     * 更新角色与菜单，先根据 rid 删除所有，再新增
+     * Update roles and menus，Based on rid Delete all，Add again
      *
-     * @param rid  角色id
-     * @param mids 菜单id
+     * @param rid  Rolesid
+     * @param mids menuid
      * @return
      */
     @Transactional

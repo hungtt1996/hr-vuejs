@@ -20,16 +20,18 @@ public interface UserMapper {
     User loadUserByUsername(String username);
 
     /**
-     * 根据 user 查询对象列表。如果指定 id ，则 sql 中增加 != id ，即排除当前用户。
-     * @param user 作为查询条件的对象，为 null 则查询所有对象
-     * @return 结果对象列表
+     * according to user Query object list。If specified id ，then sql Increase in != id ，Exclude current user。
+     *
+     * @param user The object of the query，for null Then query all objects
+     * @return Result object list
      */
     List<User> getList(User user);
 
     /**
-     * 根据 user 查询对象列表。如果指定 id ，则 sql 中增加 != id ，即排除当前用户。
-     * @param user 作为查询条件的对象，为 null 则查询所有对象
-     * @return 结果对象列表
+     * according to user Query object list。If specified id ，then sql Increase in != id ，Exclude current user。
+     *
+     * @param user The object of the query，for null Then query all objects
+     * @return Result object list
      */
     List<User> getListWithRoles(User user);
 }

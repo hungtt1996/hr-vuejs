@@ -15,12 +15,12 @@ import java.util.Collection;
 public class MyAccessDecisionManager implements AccessDecisionManager {
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
-        // 判断当前用户是否可以访问对应的请求
+        // Determine whether the current user can access the corresponding request
         for (ConfigAttribute configAttribute : configAttributes) {
             String needRole = configAttribute.getAttribute();
             if ("ROLE_LOGIN".equals(needRole)) {
                 if (authentication instanceof AnonymousAuthenticationToken) {
-                    throw new AccessDeniedException("尚未登录，请登录!");
+                    throw new AccessDeniedException("Not yet logged in，please sign in!");
                 } else {
                     return;
                 }
@@ -28,13 +28,13 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
 
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (GrantedAuthority authority : authorities) {
-                // 包含需要的角色中的任一角色就能访问
+                // Access any role that contains the required role
                 if (authority.getAuthority().equals(needRole)) {
                     return;
                 }
             }
         }
-        throw new AccessDeniedException("权限不足，请联系管理员!");
+        throw new AccessDeniedException("Insufficient permissions，Please contact the administrator!");
     }
 
     @Override

@@ -1,6 +1,6 @@
 <template>
     <div>
-        员工培训
+        employee training
     </div>
 </template>
 

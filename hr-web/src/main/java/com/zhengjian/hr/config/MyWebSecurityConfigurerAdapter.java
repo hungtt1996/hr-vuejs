@@ -55,7 +55,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        // login 请求不被 Spring Security 拦截
+        // login The request is not accepted Spring Security Intercept
         web.ignoring().antMatchers("/login");
     }
 
@@ -81,7 +81,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                         resp.setContentType("application/json;charset=utf-8");
                         User user = (User) authentication.getPrincipal();
                         user.setPassword(null);
-                        RespBean respBean = RespBean.ok("登录成功!", user);
+                        RespBean respBean = RespBean.ok("login successful!", user);
                         PrintWriter out = resp.getWriter();
                         out.write(new ObjectMapper().writeValueAsString(respBean));
                         out.flush();
@@ -92,18 +92,18 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse resp, AuthenticationException e) throws IOException, ServletException {
                         resp.setContentType("application/json;charset=utf-8");
-                        RespBean respBean = RespBean.error("登录失败!");
+                        RespBean respBean = RespBean.error("Login failed!");
                         if (e instanceof LockedException) {
-                            respBean.setMsg("账户被锁定，请联系管理员!");
+                            respBean.setMsg("Account is locked，Please contact the administrator!");
                         } else if (e instanceof CredentialsExpiredException) {
-                            respBean.setMsg("密码过期，请联系管理员!");
+                            respBean.setMsg("Password expired，Please contact the administrator!");
                         } else if (e instanceof AccountExpiredException) {
-                            respBean.setMsg("账户过期，请联系管理员!");
+                            respBean.setMsg("Account expired，Please contact the administrator!");
                         } else if (e instanceof DisabledException) {
-                            respBean.setMsg("账户被禁用，请联系管理员!");
+                            respBean.setMsg("Account is disabled，Please contact the administrator!");
                         } else if (e instanceof BadCredentialsException ||
                                 e instanceof UsernameNotFoundException) {
-                            respBean.setMsg("用户名或者密码输入错误，请重新输入!");
+                            respBean.setMsg("User name or password is incorrect，please enter again!");
                         }
                         PrintWriter out = resp.getWriter();
                         out.write(new ObjectMapper().writeValueAsString(respBean));
@@ -118,7 +118,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                     @Override
                     public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication authentication) throws IOException, ServletException {
                         resp.setContentType("application/json;charset=utf-8");
-                        RespBean respBean = RespBean.ok("注销成功!");
+                        RespBean respBean = RespBean.ok("Logout successful!");
                         PrintWriter out = resp.getWriter();
                         out.write(new ObjectMapper().writeValueAsString(respBean));
                         out.flush();
@@ -129,16 +129,16 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                 .and()
                 .csrf().disable()
                 .exceptionHandling()
-                // 默认情况下用户直接访问一个需要认证之后才可以访问的请求时，会被重定向到.loginPage("/login")，前后端分离时会导致跨域。
-                // 增加如下配置后，就不会发生重定向操作了，服务端会直接给浏览器一个 JSON 提示
+                // By default, when the user directly accesses a request that can be accessed after authentication，Will be redirected to.loginPage("/login")，Separation of front and back ends will lead to cross-domain。
+                // After adding the following configuration，There will be no redirection，The server will directly give the browser a JSON prompt
                 .authenticationEntryPoint(new AuthenticationEntryPoint() {
                     @Override
                     public void commence(HttpServletRequest req, HttpServletResponse resp, AuthenticationException e) throws IOException, ServletException {
                         resp.setContentType("application/json;charset=utf-8");
                         resp.setStatus(401);
-                        RespBean respBean = RespBean.error("访问失败!");
+                        RespBean respBean = RespBean.error("Access failed!");
                         if (e instanceof InsufficientAuthenticationException) {
-                            respBean.setMsg("访问失败，请先登录!");
+                            respBean.setMsg("Access failed，please log in first!");
                         }
                         PrintWriter out = resp.getWriter();
                         out.write(new ObjectMapper().writeValueAsString(respBean));

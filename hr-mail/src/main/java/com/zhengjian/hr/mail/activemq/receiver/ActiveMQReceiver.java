@@ -28,15 +28,15 @@ public class ActiveMQReceiver {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // 监听队列
+    // Listening queue
     @JmsListener(destination = ActiveMQConfig.QUEUE_NAME)
     public void receive(Employee employee) {
         logger.info(employee.toString());
-        // 收到消息，发送邮件
+        // Received the news，send email
         MimeMessage msg = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg);
         try {
-            helper.setSubject("入职通知");
+            helper.setSubject("Entry notification");
             helper.setFrom(mailProperties.getUsername());
             helper.setTo(employee.getEmail());
             helper.setSentDate(new Date());
@@ -51,7 +51,7 @@ public class ActiveMQReceiver {
             javaMailSender.send(msg);
         } catch (MessagingException e) {
             e.printStackTrace();
-            logger.error("邮件发送失败：" + e.getMessage());
+            logger.error("Email failed：" + e.getMessage());
         }
     }
 }

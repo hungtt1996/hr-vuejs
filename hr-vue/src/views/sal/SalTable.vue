@@ -1,6 +1,6 @@
 <template>
     <div>
-        工资表管理
+        Payroll management
     </div>
 </template>
 

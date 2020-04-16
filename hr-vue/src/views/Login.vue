@@ -3,23 +3,23 @@
         <el-form
                 class="login-form"
                 v-loading="loading"
-                element-loading-text="正在登录..."
+                element-loading-text="logging in..."
                 element-loading-spinner="el-icon-loading"
                 element-loading-background="rgba(0, 0, 0, 0.8)"
                 :model="loginForm"
                 :rules="loginRules"
                 ref="loginForm">
-            <h3 class="login-title">HR 管理系统 - 登录</h3>
+            <h3 class="login-title">HR Management System - log in</h3>
             <el-form-item prop="username">
                 <el-input size="normal" type="text" v-model="loginForm.username" auto-complete="off"
-                          placeholder="请输入用户名"></el-input>
+                          placeholder="please enter user name"></el-input>
             </el-form-item>
             <el-form-item prop="password">
                 <el-input size="normal" type="password" v-model="loginForm.password" auto-complete="off"
-                          placeholder="请输入密码" @keydown.enter.native="submitForm('loginForm')"></el-input>
+                          placeholder="Please enter the password" @keydown.enter.native="submitForm('loginForm')"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button size="normal" class="login-btn" type="primary" @click="submitForm('loginForm')">登录
+                <el-button size="normal" class="login-btn" type="primary" @click="submitForm('loginForm')">log in
                 </el-button>
             </el-form-item>
         </el-form>
@@ -36,8 +36,8 @@
                     password: '123'
                 },
                 loginRules: {
-                    username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
-                    password: [{required: true, message: '请输入密码', trigger: 'blur'}]
+                    username: [{required: true, message: 'please enter user name', trigger: 'blur'}],
+                    password: [{required: true, message: 'Please enter the password', trigger: 'blur'}]
                 },
                 loading: false
             }
@@ -52,13 +52,13 @@
                             if (resp) {
                                 this.$store.commit('initCurrentUser', resp.obj);
                                 window.sessionStorage.setItem("user", JSON.stringify(resp.obj));
-                                // 登录时如果有需要跳转的目标地址，则登录成功后直接到该地址，否则到 home 页
+                                // If you need to jump to the target address when logging in，Then directly log in to this address after successful login，Otherwise to home page
                                 let redirect = this.$route.query.redirect;
                                 this.$router.replace((redirect == '/' || redirect == undefined) ? '/home' : redirect);
                             }
                         });
                     } else {
-                        this.$message.error('表单验证错误');
+                        this.$message.error('Form validation error');
                         return false;
                     }
                 });

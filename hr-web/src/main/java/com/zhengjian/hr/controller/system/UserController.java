@@ -22,9 +22,9 @@ public class UserController {
     public RespBean deleteById(@PathVariable Integer id) {
         int r = userService.deleteById(id);
         if (r == 1) {
-            return RespBean.ok("删除成功");
+            return RespBean.ok("successfully deleted");
         } else {
-            return RespBean.error("删除失败");
+            return RespBean.error("failed to delete");
         }
     }
 
@@ -32,9 +32,9 @@ public class UserController {
     public RespBean edit(@RequestBody User user) {
         int r = userService.edit(user);
         if (r == 1) {
-            return RespBean.ok("编辑成功");
+            return RespBean.ok("Edit successfully");
         } else {
-            return RespBean.error("编辑失败");
+            return RespBean.error("Edit failed");
         }
     }
 
@@ -42,9 +42,9 @@ public class UserController {
     public RespBean editUserRole(Integer uid, Integer[] rids) {
         boolean r = userService.editUserRole(uid, rids);
         if (r) {
-            return RespBean.ok("编辑成功");
+            return RespBean.ok("Edit successfully");
         } else {
-            return RespBean.error("编辑失败");
+            return RespBean.error("Edit failed");
         }
     }
 

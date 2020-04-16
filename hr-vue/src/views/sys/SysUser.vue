@@ -3,17 +3,17 @@
         <div class="user-search-container">
             <el-input
                     class="user-search-name"
-                    placeholder="输入姓名搜索"
+                    placeholder="Enter name search"
                     prefix-icon="el-icon-search"
                     v-model="searchData.name"
                     @keydown.enter.native="handleSearch">
             </el-input>
-            <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="handleSearch">search for</el-button>
         </div>
         <div
                 class="user-container"
                 v-loading="loading"
-                element-loading-text="正在加载..."
+                element-loading-text="loading..."
                 element-loading-spinner="el-icon-loading"
                 element-loading-background="rgba(0, 0, 0, 0.8)">
             <el-card class="user-card" v-for="(user, index) in users" :key="index">
@@ -27,32 +27,32 @@
                         <img class="user-card-userface" :src="user.userface" :alt="user.name" :title="user.name">
                     </div>
                     <div class="user-card-userinfo-container">
-                        <div>用户名：{{user.username}}</div>
-                        <div>手机号码：{{user.phone}}</div>
-                        <div>电话号码：{{user.telephone}}</div>
-                        <div>地址：{{user.address}}</div>
-                        <div>是否启用：
+                        <div>username：{{user.username}}</div>
+                        <div>mobile phone number：{{user.phone}}</div>
+                        <div>telephone number：{{user.telephone}}</div>
+                        <div>address：{{user.address}}</div>
+                        <div>Whether to enable：
                             <el-switch
                                     v-model="user.enabled"
                                     active-color="#13ce66"
                                     inactive-color="#ff4949"
-                                    active-text="启用"
-                                    inactive-text="禁用"
+                                    active-text="Enable"
+                                    inactive-text="Disable"
                                     @change="handleEditEnabled(user)">
                             </el-switch>
                         </div>
-                        <div>用户角色：
+                        <div>User role：
                             <el-tag class="user-card-userinfo-role" type="success" v-for="(role, index2) in user.roles"
                                     :key="index2">{{role.nameZh}}
                             </el-tag>
                             <el-popover
                                     placement="right"
-                                    title="角色列表"
+                                    title="Role list"
                                     width="200"
                                     trigger="click"
                                     @show="handleShow(user)"
                                     @hide="handleHide(user)">
-                                <el-select v-model="selectedRoleIds" multiple placeholder="请选择">
+                                <el-select v-model="selectedRoleIds" multiple placeholder="please choose">
                                     <el-option
                                             v-for="(r, index3) in roles"
                                             :key="index3"
@@ -63,7 +63,7 @@
                                 <el-button slot="reference" icon="el-icon-more" type="text"></el-button>
                             </el-popover>
                         </div>
-                        <div>备注：{{user.remark}}</div>
+                        <div>Remarks：{{user.remark}}</div>
                     </div>
                 </div>
             </el-card>
@@ -109,7 +109,7 @@
                 this.initUsers();
             },
             handleEditEnabled(user) {
-                delete user.roles; // 请求时列表映射有问题，所以这里先删除
+                delete user.roles; // There is a problem with the list mapping when requesting，So delete here first
                 this.putRequest("/system/user/edit", user).then(resp => {
                     if (resp) {
                         this.initUsers();
@@ -117,9 +117,9 @@
                 });
             },
             handleDelete(user) {
-                this.$confirm('此操作将永久删除【' + user.name + '】用户, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm('This operation will be permanently deleted【' + user.name + '】user, Whether to continue?', 'prompt', {
+                    confirmButtonText: 'determine',
+                    cancelButtonText: 'cancel',
                     type: 'warning'
                 }).then(() => {
                     this.deleteRequest("/system/user/deleteById/" + user.id).then(resp => {
@@ -130,7 +130,7 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: 'Undeleted'
                     });
                 });
             },
@@ -145,13 +145,13 @@
             handleHide(user) {
                 let uid = user.id;
                 if (!uid) {
-                    this.$message.error('用户不能为空');
+                    this.$message.error('User cannot be empty');
                     return;
                 }
 
-                let flag = false;// 是否需要更新
+                let flag = false;// Do you need to update
                 let roles = [];
-                Object.assign(roles, user.roles);// 数据复制一份
+                Object.assign(roles, user.roles);// A copy of the data
                 if (roles.length != this.selectedRoleIds.length) {
                     flag = true;
                 } else {
@@ -160,7 +160,7 @@
                         for (let j = 0; j < this.selectedRoleIds.length; j++) {
                             let sr = this.selectedRoleIds[j];
                             if (role.id == sr) {
-                                roles.splice(i, 1);// 移除重复的
+                                roles.splice(i, 1);// Remove duplicate
                                 i--;
                                 break;
                             }

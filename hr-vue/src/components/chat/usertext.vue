@@ -1,6 +1,6 @@
 <template>
     <div id="uesrtext">
-        <textarea placeholder="按 Ctrl + Enter 发送" v-model="content"
+        <textarea placeholder="press Ctrl + Enter send" v-model="content"
                   v-on:keyup.ctrl.enter="handleChatMessages"></textarea>
     </div>
 </template>
@@ -22,11 +22,11 @@
         methods: {
             handleChatMessages() {
                 if (!this.chatUser) {
-                    this.$message.error('请先选择聊天对象');
+                    this.$message.error('Please select a chat first');
                     return;
                 }
                 if (!this.content || this.content.trim().length == 0) {
-                    this.$message.error('不能发送空白信息');
+                    this.$message.error('Can't send blank message');
                     return;
                 }
 
@@ -35,9 +35,9 @@
                 message.to = this.chatUser.username;
                 message.content = this.content;
                 message.date = new Date();
-                // 通过 /ws/chat 向后台发送聊天消息
+                // by /ws/chat Send chat messages to the background
                 this.$store.state.stomp.send('/ws/chat', {}, JSON.stringify(message));
-                // 前台处理聊天框中的消息
+                // The front desk processes messages in the chat box
                 this.$store.commit('handleChatMessages', message);
                 this.content = '';
             }

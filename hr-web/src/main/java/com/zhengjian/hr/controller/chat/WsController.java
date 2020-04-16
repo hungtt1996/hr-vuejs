@@ -15,14 +15,14 @@ public class WsController {
     @Autowired
     SimpMessagingTemplate simpMessagingTemplate;
 
-    @MessageMapping("/ws/chat") // 前台通过 /ws/chat 发消息进来
+    @MessageMapping("/ws/chat") // Passed by the front desk /ws/chat Send a message in
     public void handleMsg(Authentication authentication, ChatMsg chatMsg) {
-        // 将收到的消息发送给指定的人，如果他有订阅就能收到，需要当前连接上，后面连接上的收不到之前的消息
+        // Send the received message to the designated person，If he has a subscription, he will receive，Need to be connected，I can't receive the previous message on the link behind
         User user = (User) authentication.getPrincipal();
-        chatMsg.setFrom(user.getUsername()); // 当前登录用户
+        chatMsg.setFrom(user.getUsername()); // Currently logged in user
         chatMsg.setFromName(user.getName());
         chatMsg.setDate(new Date());
-        // 前台通过 /user/queue/chat 订阅这里的消息，默认加了 /user 前缀
+        // Passed by the front desk /user/queue/chat Subscribe to the news here，Added by default /user Prefix
         simpMessagingTemplate.convertAndSendToUser(chatMsg.getTo(), "/queue/chat", chatMsg);
     }
 }

@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userMapper.loadUserByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("用户名不存在！");
+            throw new UsernameNotFoundException("Username does not exist！");
         }
         user.setRoles(roleMapper.getListByUserId(user.getId()));
         return user;
@@ -46,10 +46,10 @@ public class UserService implements UserDetailsService {
     }
 
     /**
-     * 更新用户与角色，先根据 uid 删除所有，再新增
+     * Update users and roles，Based on uid Delete all，Add again
      *
-     * @param uid  用户id
-     * @param rids 角色id
+     * @param uid  userid
+     * @param rids Rolesid
      * @return
      */
     @Transactional
@@ -69,7 +69,7 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             user = new User();
         }
-        user.setId(UserUtils.getCurUserId());// 排除当前用户
+        user.setId(UserUtils.getCurUserId());// Exclude current user
         List<User> list = userMapper.getList(user);
         return list;
     }
@@ -78,7 +78,7 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             user = new User();
         }
-        user.setId(UserUtils.getCurUserId());// 排除当前用户
+        user.setId(UserUtils.getCurUserId());// Exclude current user
         List<User> list = userMapper.getListWithRoles(user);
         return list;
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        人事信息统计
+        Personnel information statistics
     </div>
 </template>
 

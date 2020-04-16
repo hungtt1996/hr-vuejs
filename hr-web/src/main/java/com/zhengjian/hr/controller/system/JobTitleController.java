@@ -22,9 +22,9 @@ public class JobTitleController {
     public RespBean add(@RequestBody JobTitle jobTitle) {
         int r = jobTitleService.add(jobTitle);
         if (r == 1) {
-            return RespBean.ok("新增成功");
+            return RespBean.ok("added successfully");
         } else {
-            return RespBean.error("新增失败");
+            return RespBean.error("Add failed");
         }
     }
 
@@ -32,9 +32,9 @@ public class JobTitleController {
     public RespBean deleteById(@PathVariable Integer id) {
         int r = jobTitleService.deleteById(id);
         if (r == 1) {
-            return RespBean.ok("删除成功");
+            return RespBean.ok("successfully deleted");
         } else {
-            return RespBean.error("删除失败");
+            return RespBean.error("failed to delete");
         }
     }
 
@@ -42,9 +42,9 @@ public class JobTitleController {
     public RespBean deleteByIds(Integer[] ids) {
         int r = jobTitleService.deleteByIds(ids);
         if (r == ids.length) {
-            return RespBean.ok("删除成功");
+            return RespBean.ok("successfully deleted");
         } else {
-            return RespBean.error("删除失败");
+            return RespBean.error("failed to delete");
         }
     }
 
@@ -52,9 +52,9 @@ public class JobTitleController {
     public RespBean edit(@RequestBody JobTitle jobTitle) {
         int r = jobTitleService.edit(jobTitle);
         if (r == 1) {
-            return RespBean.ok("编辑成功");
+            return RespBean.ok("Edit successfully");
         } else {
-            return RespBean.error("编辑失败");
+            return RespBean.error("Edit failed");
         }
     }
 

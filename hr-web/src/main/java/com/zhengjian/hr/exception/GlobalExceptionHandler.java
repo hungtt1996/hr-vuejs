@@ -12,9 +12,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SQLException.class)
     public RespBean sqlException(SQLException e) {
         e.printStackTrace();
-        RespBean respBean = RespBean.error("操作失败，数据库异常!");
+        RespBean respBean = RespBean.error("operation failed，Database exception!");
         if (e instanceof SQLIntegrityConstraintViolationException) {
-            return respBean.setMsg("操作失败，该数据有关联数据!");
+            return respBean.setMsg("operation failed，The data has associated data!");
         }
         return respBean;
     }
