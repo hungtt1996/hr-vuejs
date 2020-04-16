@@ -4,8 +4,6 @@
 
 Spring Boot Actual project（Human Resource Management System），Separate front-end development，Spring Boot + Vue 。
 
-- project address：[https://github.com/cxy35/hr](https://github.com/cxy35/hr)
-
 ## Project Technology Stack
 
 ### Front-end technology stack
@@ -64,8 +62,6 @@ Online chat
 ![](https://oscimg.oschina.net/oscnet/up-73929a7a0a07d7fed372401fb08c989fd0e.png)
 
 ## Project deployment and secondary development
-
-1. clone Code to local `hr` table of Contents： `git clone https://github.com/cxy35/hr.git hr` 。
 2. New locally `hr` database，Execute database initialization script `hr/hr.sql` 。
 3. use IntelliJ IDEA or others IDE Import `hr` Backend engineering（selected hr Directory）。If it is not secondary development，You can skip this step。
 4. modify `hr-web` Under engineering `application.properties` Database in configuration file、ActiveMQ/RabbitMQ、Redis Wait for configuration，Then pass IDE start up or Maven Start the backend service after packaging，default `8081` port（see `application.properties` Configuration file）。
@@ -99,17 +95,3 @@ Online chat
 - Payroll management-Employee account set management
 - Online chat
 - Other business modules have not been implemented...
-
-
----
-
-- [Spring Boot Tutorial collection](https://mp.weixin.qq.com/s/9vOiAxHFnfJnRwSlTfAHwg)
-- [Spring Boot Tutorial collection sample code](https://github.com/cxy35/spring-boot-samples)
-- [Spring Boot Actual project（Human Resource Management System）](https://github.com/cxy35/hr)
-
-
----
-
-Scan the code to follow WeChat public account **programmer35** ，Get the latest technology dry goods，Chat #Programmer's35，35Programmer# 。Independent site：[https://cxy35.com](https://cxy35.com)
-
-![](https://oscimg.oschina.net/oscnet/up-285838b9c516db5bb1ba760f292f2346078.JPEG)
