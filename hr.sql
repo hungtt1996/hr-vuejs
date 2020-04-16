@@ -22,11 +22,11 @@ DROP TABLE IF EXISTS `adjustsalary`;
 CREATE TABLE `adjustsalary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `eid` int(11) DEFAULT NULL,
-  `asDate` date DEFAULT NULL COMMENT '调薪日期',
-  `beforeSalary` int(11) DEFAULT NULL COMMENT '调前薪资',
-  `afterSalary` int(11) DEFAULT NULL COMMENT '调后薪资',
-  `reason` varchar(255) DEFAULT NULL COMMENT '调薪原因',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `asDate` date DEFAULT NULL COMMENT 'Pay date',
+  `beforeSalary` int(11) DEFAULT NULL COMMENT 'Pre-adjusted salary',
+  `afterSalary` int(11) DEFAULT NULL COMMENT 'Adjusted salary',
+  `reason` varchar(255) DEFAULT NULL COMMENT 'Reasons for salary adjustment',
+  `remark` varchar(255) DEFAULT NULL COMMENT 'Remarks',
   PRIMARY KEY (`id`),
   KEY `pid` (`eid`),
   CONSTRAINT `adjustsalary_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `t_employee` (`id`)
@@ -43,10 +43,10 @@ DROP TABLE IF EXISTS `appraise`;
 CREATE TABLE `appraise` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `eid` int(11) DEFAULT NULL,
-  `appDate` date DEFAULT NULL COMMENT '考评日期',
-  `appResult` varchar(32) DEFAULT NULL COMMENT '考评结果',
-  `appContent` varchar(255) DEFAULT NULL COMMENT '考评内容',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `appDate` date DEFAULT NULL COMMENT 'Assessment date',
+  `appResult` varchar(32) DEFAULT NULL COMMENT 'Evaluation results',
+  `appContent` varchar(255) DEFAULT NULL COMMENT 'Evaluation content',
+  `remark` varchar(255) DEFAULT NULL COMMENT 'Remarks',
   PRIMARY KEY (`id`),
   KEY `pid` (`eid`),
   CONSTRAINT `appraise_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `t_employee` (`id`)
@@ -62,12 +62,12 @@ CREATE TABLE `appraise` (
 DROP TABLE IF EXISTS `employeeec`;
 CREATE TABLE `employeeec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `eid` int(11) DEFAULT NULL COMMENT '员工编号',
-  `ecDate` date DEFAULT NULL COMMENT '奖罚日期',
-  `ecReason` varchar(255) DEFAULT NULL COMMENT '奖罚原因',
-  `ecPoint` int(11) DEFAULT NULL COMMENT '奖罚分',
-  `ecType` int(11) DEFAULT NULL COMMENT '奖罚类别，0：奖，1：罚',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `eid` int(11) DEFAULT NULL COMMENT 'employee ID',
+  `ecDate` date DEFAULT NULL COMMENT 'Reward date',
+  `ecReason` varchar(255) DEFAULT NULL COMMENT 'Reasons for rewards and penalties',
+  `ecPoint` int(11) DEFAULT NULL COMMENT 'Reward and penalty points',
+  `ecType` int(11) DEFAULT NULL COMMENT 'Reward category，0：prize，1：Penalty',
+  `remark` varchar(255) DEFAULT NULL COMMENT 'Remarks',
   PRIMARY KEY (`id`),
   KEY `pid` (`eid`),
   CONSTRAINT `employeeec_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `t_employee` (`id`)
@@ -84,10 +84,10 @@ DROP TABLE IF EXISTS `employeeremove`;
 CREATE TABLE `employeeremove` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `eid` int(11) DEFAULT NULL,
-  `afterDepId` int(11) DEFAULT NULL COMMENT '调动后部门',
-  `afterJobId` int(11) DEFAULT NULL COMMENT '调动后职位',
-  `removeDate` date DEFAULT NULL COMMENT '调动日期',
-  `reason` varchar(255) DEFAULT NULL COMMENT '调动原因',
+  `afterDepId` int(11) DEFAULT NULL COMMENT 'Post-mobilization department',
+  `afterJobId` int(11) DEFAULT NULL COMMENT 'Post-mobilization position',
+  `removeDate` date DEFAULT NULL COMMENT 'Date of transfer',
+  `reason` varchar(255) DEFAULT NULL COMMENT 'Reason for transfer',
   `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `pid` (`eid`),
@@ -104,10 +104,10 @@ CREATE TABLE `employeeremove` (
 DROP TABLE IF EXISTS `employeetrain`;
 CREATE TABLE `employeetrain` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `eid` int(11) DEFAULT NULL COMMENT '员工编号',
-  `trainDate` date DEFAULT NULL COMMENT '培训日期',
-  `trainContent` varchar(255) DEFAULT NULL COMMENT '培训内容',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `eid` int(11) DEFAULT NULL COMMENT 'employee ID',
+  `trainDate` date DEFAULT NULL COMMENT 'Training date',
+  `trainContent` varchar(255) DEFAULT NULL COMMENT 'training content',
+  `remark` varchar(255) DEFAULT NULL COMMENT 'Remarks',
   PRIMARY KEY (`id`),
   KEY `pid` (`eid`),
   CONSTRAINT `employeetrain_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `t_employee` (`id`)
@@ -134,9 +134,9 @@ CREATE TABLE `msgcontent` (
 -- ----------------------------
 INSERT INTO `msgcontent` VALUES ('14', '2222222222', '11111111111111111', '2018-02-02 20:46:19');
 INSERT INTO `msgcontent` VALUES ('15', '22222222', '3333333333333333333333', '2018-02-02 21:45:57');
-INSERT INTO `msgcontent` VALUES ('16', '通知标题1', '通知内容1', '2018-02-03 11:41:39');
-INSERT INTO `msgcontent` VALUES ('17', '通知标题2', '通知内容2', '2018-02-03 11:52:37');
-INSERT INTO `msgcontent` VALUES ('18', '通知标题3', '通知内容3', '2018-02-03 12:19:41');
+INSERT INTO `msgcontent` VALUES ('16', 'Notification title1', 'Notification content1', '2018-02-03 11:41:39');
+INSERT INTO `msgcontent` VALUES ('17', 'Notification title2', 'Notification content2', '2018-02-03 11:52:37');
+INSERT INTO `msgcontent` VALUES ('18', 'Notification title3', 'Notification content3', '2018-02-03 12:19:41');
 
 -- ----------------------------
 -- Table structure for oplog
@@ -144,9 +144,9 @@ INSERT INTO `msgcontent` VALUES ('18', '通知标题3', '通知内容3', '2018-0
 DROP TABLE IF EXISTS `oplog`;
 CREATE TABLE `oplog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `addDate` date DEFAULT NULL COMMENT '添加日期',
-  `operate` varchar(255) DEFAULT NULL COMMENT '操作内容',
-  `hrid` int(11) DEFAULT NULL COMMENT '操作员ID',
+  `addDate` date DEFAULT NULL COMMENT 'Add date',
+  `operate` varchar(255) DEFAULT NULL COMMENT 'Operation content',
+  `hrid` int(11) DEFAULT NULL COMMENT 'operatorID',
   PRIMARY KEY (`id`),
   KEY `hrid` (`hrid`),
   CONSTRAINT `oplog_ibfk_1` FOREIGN KEY (`hrid`) REFERENCES `t_user` (`id`)
@@ -162,10 +162,10 @@ CREATE TABLE `oplog` (
 DROP TABLE IF EXISTS `sysmsg`;
 CREATE TABLE `sysmsg` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mid` int(11) DEFAULT NULL COMMENT '消息id',
-  `type` int(11) DEFAULT '0' COMMENT '0表示群发消息',
-  `hrid` int(11) DEFAULT NULL COMMENT '这条消息是给谁的',
-  `state` int(11) DEFAULT '0' COMMENT '0 未读 1 已读',
+  `mid` int(11) DEFAULT NULL COMMENT 'Newsid',
+  `type` int(11) DEFAULT '0' COMMENT '0Means group message',
+  `hrid` int(11) DEFAULT NULL COMMENT 'Who is this message for',
+  `state` int(11) DEFAULT '0' COMMENT '0 unread 1 Have read',
   PRIMARY KEY (`id`),
   KEY `hrid` (`hrid`),
   KEY `sysmsg_ibfk_1` (`mid`),
@@ -207,34 +207,34 @@ INSERT INTO `sysmsg` VALUES ('81', '18', '0', '12', '0');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_department`;
 CREATE TABLE `t_department` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(32) DEFAULT NULL COMMENT '部门名称',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(32) DEFAULT NULL COMMENT 'Department name',
   `parentId` int(11) DEFAULT NULL,
   `depPath` varchar(255) DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT '1',
   `isParent` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COMMENT='部门';
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COMMENT='department';
 
 -- ----------------------------
 -- Records of t_department
 -- ----------------------------
-INSERT INTO `t_department` VALUES ('1', '股东会', '-1', '.1', '1', '1');
-INSERT INTO `t_department` VALUES ('4', '董事会', '1', '.1.4', '1', '1');
-INSERT INTO `t_department` VALUES ('5', '总办', '4', '.1.4.5', '1', '1');
-INSERT INTO `t_department` VALUES ('8', '财务部', '5', '.1.4.5.8', '1', '0');
-INSERT INTO `t_department` VALUES ('78', '市场部', '5', '.1.4.5.78', '1', '1');
-INSERT INTO `t_department` VALUES ('81', '华北市场部', '78', '.1.4.5.78.81', '1', '1');
-INSERT INTO `t_department` VALUES ('82', '华南市场部', '78', '.1.4.5.78.82', '1', '0');
-INSERT INTO `t_department` VALUES ('85', '石家庄市场部', '81', '.1.4.5.78.81.85', '1', '0');
-INSERT INTO `t_department` VALUES ('86', '西北市场部', '78', '.1.4.5.78.86', '1', '1');
-INSERT INTO `t_department` VALUES ('87', '西安市场', '86', '.1.4.5.78.86.87', '1', '1');
-INSERT INTO `t_department` VALUES ('89', '莲湖区市场', '87', '.1.4.5.78.86.87.89', '1', '0');
-INSERT INTO `t_department` VALUES ('91', '技术部', '5', '.1.4.5.91', '1', '0');
-INSERT INTO `t_department` VALUES ('92', '运维部', '5', '.1.4.5.92', '1', '1');
-INSERT INTO `t_department` VALUES ('93', '运维1部', '92', '.1.4.5.92.93', '1', '0');
-INSERT INTO `t_department` VALUES ('94', '运维2部', '92', '.1.4.5.92.94', '1', '0');
-INSERT INTO `t_department` VALUES ('115', '测试部门1', '1', '.1.115', '1', '1');
+INSERT INTO `t_department` VALUES ('1', 'Shareholders meeting', '-1', '.1', '1', '1');
+INSERT INTO `t_department` VALUES ('4', 'Board of Directors', '1', '.1.4', '1', '1');
+INSERT INTO `t_department` VALUES ('5', 'General Office', '4', '.1.4.5', '1', '1');
+INSERT INTO `t_department` VALUES ('8', 'Finance Department', '5', '.1.4.5.8', '1', '0');
+INSERT INTO `t_department` VALUES ('78', 'Marketing Department', '5', '.1.4.5.78', '1', '1');
+INSERT INTO `t_department` VALUES ('81', 'North China Market', '78', '.1.4.5.78.81', '1', '1');
+INSERT INTO `t_department` VALUES ('82', 'South China Market', '78', '.1.4.5.78.82', '1', '0');
+INSERT INTO `t_department` VALUES ('85', 'Shijiazhuang Marketing Department', '81', '.1.4.5.78.81.85', '1', '0');
+INSERT INTO `t_department` VALUES ('86', 'Northwest Market', '78', '.1.4.5.78.86', '1', '1');
+INSERT INTO `t_department` VALUES ('87', 'Xian Market', '86', '.1.4.5.78.86.87', '1', '1');
+INSERT INTO `t_department` VALUES ('89', 'Lianhu District Market', '87', '.1.4.5.78.86.87.89', '1', '0');
+INSERT INTO `t_department` VALUES ('91', 'Technology Department', '5', '.1.4.5.91', '1', '0');
+INSERT INTO `t_department` VALUES ('92', 'Operations Department', '5', '.1.4.5.92', '1', '1');
+INSERT INTO `t_department` VALUES ('93', 'O &amp; M1unit', '92', '.1.4.5.92.93', '1', '0');
+INSERT INTO `t_department` VALUES ('94', 'O &amp; M2unit', '92', '.1.4.5.92.94', '1', '0');
+INSERT INTO `t_department` VALUES ('115', 'Testing department1', '1', '.1.115', '1', '1');
 INSERT INTO `t_department` VALUES ('124', 'aa', '115', '.1.115.124', '1', '1');
 INSERT INTO `t_department` VALUES ('125', 'bb', '115', '.1.115.125', '1', '0');
 INSERT INTO `t_department` VALUES ('126', 'a1', '124', '.1.115.124.126', '1', '0');
@@ -244,35 +244,35 @@ INSERT INTO `t_department` VALUES ('126', 'a1', '124', '.1.115.124.126', '1', '0
 -- ----------------------------
 DROP TABLE IF EXISTS `t_employee`;
 CREATE TABLE `t_employee` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(10) DEFAULT NULL COMMENT '姓名',
-  `gender` char(4) DEFAULT NULL COMMENT '性别',
-  `birthday` date DEFAULT NULL COMMENT '出生日期',
-  `idCard` char(18) DEFAULT NULL COMMENT '身份证号码',
-  `wedlock` enum('已婚','未婚','离异') DEFAULT NULL COMMENT '婚姻状况',
-  `nationId` int(8) DEFAULT NULL COMMENT '民族',
-  `nativePlace` varchar(20) DEFAULT NULL COMMENT '籍贯',
-  `politicsStatusId` int(8) DEFAULT NULL COMMENT '政治面貌',
-  `email` varchar(20) DEFAULT NULL COMMENT '电子邮箱',
-  `phone` varchar(11) DEFAULT NULL COMMENT '电话号码',
-  `address` varchar(64) DEFAULT NULL COMMENT '联系地址',
-  `departmentId` int(11) DEFAULT NULL COMMENT '所属部门',
-  `jobTitleId` int(11) DEFAULT NULL COMMENT '职称',
-  `positionId` int(11) DEFAULT NULL COMMENT '职位',
-  `salaryId` int(11) DEFAULT NULL COMMENT '工资账套',
-  `engageForm` varchar(8) DEFAULT NULL COMMENT '聘用形式',
-  `tiptopDegree` enum('博士','硕士','本科','大专','高中','初中','小学','其他') DEFAULT NULL COMMENT '最高学历',
-  `specialty` varchar(32) DEFAULT NULL COMMENT '专业',
-  `school` varchar(32) DEFAULT NULL COMMENT '毕业院校',
-  `beginDate` date DEFAULT NULL COMMENT '入职日期',
-  `workState` enum('在职','离职') DEFAULT '在职' COMMENT '在职状态',
-  `workId` char(8) DEFAULT NULL COMMENT '工号',
-  `contractTerm` double DEFAULT NULL COMMENT '合同期限',
-  `conversionTime` date DEFAULT NULL COMMENT '转正日期',
-  `notWorkDate` date DEFAULT NULL COMMENT '离职日期',
-  `beginContract` date DEFAULT NULL COMMENT '合同起始日期',
-  `endContract` date DEFAULT NULL COMMENT '合同终止日期',
-  `workAge` int(11) DEFAULT NULL COMMENT '工龄',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(10) DEFAULT NULL COMMENT 'Name',
+  `gender` char(4) DEFAULT NULL COMMENT 'gender',
+  `birthday` date DEFAULT NULL COMMENT 'date of birth',
+  `idCard` char(18) DEFAULT NULL COMMENT 'identification number',
+  `wedlock` enum('married','unmarried','Divorce') DEFAULT NULL COMMENT 'marital status',
+  `nationId` int(8) DEFAULT NULL COMMENT 'Nation',
+  `nativePlace` varchar(20) DEFAULT NULL COMMENT 'Hometown',
+  `politicsStatusId` int(8) DEFAULT NULL COMMENT 'political status',
+  `email` varchar(20) DEFAULT NULL COMMENT 'E-mail',
+  `phone` varchar(11) DEFAULT NULL COMMENT 'telephone number',
+  `address` varchar(64) DEFAULT NULL COMMENT 'contact address',
+  `departmentId` int(11) DEFAULT NULL COMMENT 'Department',
+  `jobTitleId` int(11) DEFAULT NULL COMMENT 'job title',
+  `positionId` int(11) DEFAULT NULL COMMENT 'position',
+  `salaryId` int(11) DEFAULT NULL COMMENT 'Payroll',
+  `engageForm` varchar(8) DEFAULT NULL COMMENT 'Employment form',
+  `tiptopDegree` enum('PhD','masters degree','Undergraduate','College','High school','junior high school','primary school','other') DEFAULT NULL COMMENT 'highest education',
+  `specialty` varchar(32) DEFAULT NULL COMMENT 'profession',
+  `school` varchar(32) DEFAULT NULL COMMENT 'graduated school',
+  `beginDate` date DEFAULT NULL COMMENT 'Entry date',
+  `workState` enum('In service','Resignation') DEFAULT 'In service' COMMENT 'Working status',
+  `workId` char(8) DEFAULT NULL COMMENT 'Job number',
+  `contractTerm` double DEFAULT NULL COMMENT 'Contract period',
+  `conversionTime` date DEFAULT NULL COMMENT 'Correct date',
+  `notWorkDate` date DEFAULT NULL COMMENT 'Resignation date',
+  `beginContract` date DEFAULT NULL COMMENT 'Contract start date',
+  `endContract` date DEFAULT NULL COMMENT 'Contract termination date',
+  `workAge` int(11) DEFAULT NULL COMMENT 'Seniority',
   PRIMARY KEY (`id`),
   KEY `idx_departmentId` (`departmentId`) USING BTREE,
   KEY `idx_nationId` (`nationId`) USING BTREE,
@@ -287,150 +287,150 @@ CREATE TABLE `t_employee` (
   CONSTRAINT `fk_emp_politicsStatusId` FOREIGN KEY (`politicsStatusId`) REFERENCES `t_politicsstatus` (`id`),
   CONSTRAINT `fk_emp_positonId` FOREIGN KEY (`positionId`) REFERENCES `t_position` (`id`),
   CONSTRAINT `fk_emp_salaryId` FOREIGN KEY (`salaryId`) REFERENCES `t_salary` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1958 DEFAULT CHARSET=utf8 COMMENT='员工';
+) ENGINE=InnoDB AUTO_INCREMENT=1958 DEFAULT CHARSET=utf8 COMMENT='Employee';
 
 -- ----------------------------
 -- Records of t_employee
 -- ----------------------------
-INSERT INTO `t_employee` VALUES ('1', '程序员35', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '5', '9', '29', '19', '劳务合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000001', '2', '2018-04-01', null, '2018-01-01', '2020-01-01', null);
-INSERT INTO `t_employee` VALUES ('2', '陈静', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '91', '12', '29', '13', '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000002', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('3', '赵琳浩', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', '10', '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000003', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('4', '鹿存亮', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', '9', '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000004', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('5', '姚森', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', '19', '劳动合同', '硕士', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000005', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('6', '云星', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000006', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('7', '贾旭明', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000007', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('8', '张黎明', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000008', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('9', '薛磊', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000009', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('10', '张洁', '女', '1990-10-09', '420177199010093652', '未婚', '1', '海南', '5', 'zhangjie@qq.com', '13695557742', '海口市美兰区', '92', '16', '34', null, '劳动合同', '高中', '无', '海南侨中', '2018-01-01', '在职', '00000010', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('11', '程序员35-2', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '91', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000011', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('12', '陈静2', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000012', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('13', '赵琳浩2', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000013', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('14', '鹿存亮2', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000014', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('15', '姚森2', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000015', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('16', '云星2', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000016', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('17', '贾旭明2', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000017', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('18', '王一亭', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000018', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('19', '薛磊2', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000019', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('20', '张洁2', '女', '1990-10-09', '420177199010093652', '未婚', '1', '海南', '5', 'zhangjie@qq.com', '13695557742', '海口市美兰区', '92', '16', '34', null, '劳动合同', '高中', '无', '海南侨中', '2018-01-01', '在职', '00000020', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('21', '程序员35-3', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000021', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('22', '陈静3', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000022', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('24', '鹿存亮3', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000024', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('25', '姚森3', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000025', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('26', '云星3', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000026', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('27', '贾旭明3', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000027', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('28', '张黎明3', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000028', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('29', '薛磊3', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000029', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('31', '程序员35-4', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000031', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('32', '陈静4', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000032', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('33', '赵琳浩4', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000033', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('34', '鹿存亮4', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000034', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('35', '姚森4', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000035', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('36', '云星4', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000036', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('37', '贾旭明4', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000037', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('38', '张黎明2', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000038', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('39', '薛磊4', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000039', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('40', '张洁4', '女', '1990-10-09', '420177199010093652', '未婚', '1', '海南', '5', 'zhangjie@qq.com', '13695557742', '海口市美兰区', '92', '16', '34', null, '劳动合同', '高中', '无', '海南侨中', '2018-01-01', '在职', '00000040', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('41', '程序员35-5', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000041', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('42', '陈静5', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000042', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('43', '赵琳浩5', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000043', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('44', '鹿存亮5', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000044', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('45', '姚森5', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000045', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('46', '云星5', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000046', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('47', '贾旭明5', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000047', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('48', '张黎明5', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000048', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('49', '薛磊5', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000049', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('50', '张洁5', '女', '1990-10-09', '420177199010093652', '未婚', '1', '海南', '5', 'zhangjie@qq.com', '13695557742', '海口市美兰区', '92', '16', '34', null, '劳动合同', '高中', '无', '海南侨中', '2018-01-01', '在职', '00000050', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('51', '程序员35-6', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000051', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('52', '陈静6', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000052', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('53', '赵琳浩6', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000053', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('54', '鹿存亮6', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000054', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('55', '姚森6', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000055', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('56', '云星6', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000056', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1351', '程序员35', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000001', '1', null, null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('1352', '陈静', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000002', '3', null, null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('1353', '赵琳浩', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000003', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1354', '鹿存亮', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000004', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1355', '姚森', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000005', '7', null, null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('1357', '贾旭明', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000007', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1358', '张黎明', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000008', '7', null, null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('1359', '薛磊', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000009', '6', null, null, '2018-01-01', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('1360', '张洁', '女', '1990-10-09', '420177199010093652', '未婚', '1', '海南', '5', 'zhangjie@qq.com', '13695557742', '海口市美兰区', '92', '16', '34', null, '劳动合同', '高中', '无', '海南侨中', '2018-01-01', '在职', '00000010', '1', null, null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('1361', '程序员35-2', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000011', '1', null, null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('1362', '陈静2', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000012', '3', null, null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('1363', '赵琳浩2', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000013', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1364', '鹿存亮2', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000014', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1365', '姚森2', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000015', '7', null, null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('1366', '云星2', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000016', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1367', '贾旭明2', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000017', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1368', '王一亭', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000018', '7', null, null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('1369', '薛磊2', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000019', '1', null, null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('1370', '张洁2', '女', '1990-10-09', '420177199010093652', '未婚', '1', '海南', '5', 'zhangjie@qq.com', '13695557742', '海口市美兰区', '92', '16', '34', null, '劳动合同', '高中', '无', '海南侨中', '2018-01-01', '在职', '00000020', '1', null, null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('1371', '程序员35-3', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000021', '1', null, null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('1372', '陈静3', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000022', '3', null, null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('1373', '鹿存亮3', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000024', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1374', '姚森3', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000025', '7', null, null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('1375', '云星3', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000026', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1376', '贾旭明3', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000027', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1377', '张黎明3', '男', '1991-02-01', '610144199102014569', '已婚', '1', '广东', '6', 'zhangliming@qq.com', '18979994478', '广东珠海', '91', '15', '33', null, '劳动合同', '高中', '考古', '清华大学', '2018-01-01', '在职', '00000028', '7', null, null, '2018-01-01', '2025-01-30', null);
-INSERT INTO `t_employee` VALUES ('1378', '薛磊3', '男', '1992-07-01', '610144199207017895', '已婚', '1', '陕西西安', '13', 'xuelei@qq.com', '15648887741', '西安市雁塔区', '92', '14', '34', null, '劳动合同', '初中', '无', '华胥中学', '2018-01-01', '在职', '00000029', '6', null, null, '2018-01-01', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('1379', '程序员35-4', '男', '1990-01-01', '610122199001011256', '已婚', '1', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '8', '9', '29', null, '劳动合同', '本科', '信息管理与信息系统', '深圳大学', '2018-01-01', '在职', '00000031', '1', null, null, '2018-01-01', '2019-01-01', null);
-INSERT INTO `t_employee` VALUES ('1380', '陈静4', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000032', '3', null, null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('1381', '赵琳浩4', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000033', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1382', '鹿存亮4', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000034', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1383', '姚森4', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000035', '7', null, null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('1384', '云星4', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000036', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1385', '贾旭明4', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000037', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1411', '谢工', '女', '1970-01-01', '618177197001011234', '离异', '1', '江苏', '1', '584991843@qq.com', '18558887788', '北京', '85', '12', '29', null, '劳动合同', '本科', '计算机软件', '南华大学', '2018-01-01', '在职', '00000038', '5', '2019-01-01', null, '2018-01-01', '2023-01-01', null);
-INSERT INTO `t_employee` VALUES ('1412', '林昭亮', '男', '1990-01-01', '610122199809091234', '已婚', '1', '广东', '13', '584991843@qq.com', '16767776654', '广东深圳', '91', '15', '33', null, '劳动合同', '大专', '计算机软件', '广东职业技术学院', '2018-01-01', '在职', '00000039', '5', '2018-04-01', null, '2018-01-01', '2023-01-01', null);
-INSERT INTO `t_employee` VALUES ('1942', '测试员工', '男', '1989-12-31', '610122199001011256', '已婚', '2', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '81', '10', '30', null, '劳务合同', '大专', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000066', '1.75', '2018-03-31', null, '2017-12-31', '2019-09-30', null);
-INSERT INTO `t_employee` VALUES ('1943', '测试员工2', '男', '1989-12-31', '610122199001011256', '已婚', '1', '陕西', '1', 'laowang@qq.com', '18565558897', '深圳市南山区', '91', '9', '29', null, '劳务合同', '本科', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000067', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
-INSERT INTO `t_employee` VALUES ('1944', '测试员工3', '男', '1989-12-31', '610122199001011256', '已婚', '2', '陕西', '13', 'laowang@qq.com', '18565558897', '深圳市南山区', '81', '10', '30', null, '劳务合同', '大专', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000066', '1.75', '2018-03-31', null, '2017-12-31', '2019-09-30', null);
-INSERT INTO `t_employee` VALUES ('1945', '测试员工4', '男', '1989-12-31', '610122199001011256', '已婚', '1', '陕西', '1', 'laowang@qq.com', '18565558897', '深圳市南山区', '91', '9', '29', null, '劳务合同', '本科', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000067', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
-INSERT INTO `t_employee` VALUES ('1946', '测试员工5', '女', '1989-02-01', '421288198902011234', '已婚', '1', '海南', '1', 'chenjing@qq.com', '18795556693', '海南省海口市美兰区', '82', '12', '30', null, '劳动合同', '高中', '市场营销', '武汉大学', '2015-06-09', '在职', '00000032', '3', null, null, '2015-06-09', '2018-06-08', null);
-INSERT INTO `t_employee` VALUES ('1947', '测试员工6', '男', '1993-03-04', '610122199303041456', '未婚', '1', '陕西', '3', 'zhao@qq.com', '15698887795', '陕西省西安市莲湖区', '91', '12', '33', null, '劳动合同', '博士', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000033', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1948', '测试员工7', '男', '1990-01-03', '610122199001031456', '已婚', '1', '陕西', '3', 'zhao@qq.com', '15612347795', '陕西省西安市莲湖区', '92', '12', '34', null, '劳动合同', '高中', '电子工程', '哈尔滨理工大学', '2018-01-01', '在职', '00000034', '3.5', null, null, '2018-01-01', '2021-07-14', null);
-INSERT INTO `t_employee` VALUES ('1949', '测试员工8', '男', '1991-02-05', '610122199102058952', '已婚', '1', '河南', '3', 'yaosen@qq.com', '14785559936', '河南洛阳人民大道58号', '92', '15', '34', null, '劳动合同', '初中', '室内装修设计', '西北大学', '2017-01-02', '在职', '00000035', '7', null, null, '2017-01-02', '2024-01-17', null);
-INSERT INTO `t_employee` VALUES ('1950', '测试员工9', '女', '1993-01-05', '610122199301054789', '已婚', '1', '陕西西安', '1', 'yunxing@qq.com', '15644442252', '陕西西安新城区', '92', '16', '34', null, '劳务合同', '硕士', '通信工程', '西安电子科技学校', '2018-01-01', '在职', '00000036', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1951', '测试员工10', '男', '1993-11-11', '610122199311111234', '已婚', '1', '广东广州', '4', 'jiaxuming@qq.com', '15644441234', '广东省广州市天河区冼村路', '78', '15', '33', null, '劳务合同', '初中', '通信工程', '西北大学', '2018-01-01', '在职', '00000037', '5.25', null, null, '2018-01-01', '2023-04-13', null);
-INSERT INTO `t_employee` VALUES ('1952', '测试员工11', '女', '1970-01-01', '618177197001011234', '离异', '1', '江苏', '1', '584991843@qq.com', '18558887788', '北京', '85', '12', '29', null, '劳动合同', '本科', '计算机软件', '南华大学', '2018-01-01', '在职', '00000038', '5', '2019-01-01', null, '2018-01-01', '2023-01-01', null);
-INSERT INTO `t_employee` VALUES ('1953', '测试员工12', '男', '1990-01-01', '610122199809091234', '已婚', '1', '广东', '13', '584991843@qq.com', '16767776654', '广东深圳', '91', '15', '33', null, '劳动合同', '大专', '计算机软件', '广东职业技术学院', '2018-01-01', '在职', '00000039', '5', '2018-04-01', null, '2018-01-01', '2023-01-01', null);
-INSERT INTO `t_employee` VALUES ('1954', '测试员工3', '男', '1989-12-31', '610122199001011256', '已婚', '1', '陕西', '13', '454407628@qq.com', '18565558897', '深圳市南山区', '91', '10', '36', null, '劳务合同', '本科', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000068', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
-INSERT INTO `t_employee` VALUES ('1955', '测试员工', '男', '1989-12-31', '610122199001011256', '已婚', '1', '陕西', '13', '454407628@qq.com', '18565558897', '深圳市南山区', '91', '10', '36', null, '劳务合同', '本科', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000069', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
-INSERT INTO `t_employee` VALUES ('1956', '测试员工', '男', '1989-12-31', '610122199001011256', '已婚', '1', '陕西', '13', '454407628@qq.com', '18565558897', '深圳市南山区', '78', '9', '29', null, '劳务合同', '本科', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000070', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
-INSERT INTO `t_employee` VALUES ('1957', '测试员工', '男', '1989-12-31', '610122199001011256', '已婚', '1', '陕西', '13', '454407628@qq.com', '18565558897', '深圳市南山区', '89', '9', '29', null, '劳务合同', '本科', '信息管理与信息系统', '深圳大学', '2017-12-31', '在职', '00000071', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
+INSERT INTO `t_employee` VALUES ('1', 'programmer35', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '5', '9', '29', '19', 'Labor contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000001', '2', '2018-04-01', null, '2018-01-01', '2020-01-01', null);
+INSERT INTO `t_employee` VALUES ('2', 'Chen Jing', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '91', '12', '29', '13', 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000002', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('3', 'Zhao Linhao', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', '10', 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000003', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('4', 'Lu Cunliang', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', '9', 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000004', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('5', 'Yao Sen', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', '19', 'Labor Contract', 'masters degree', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000005', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('6', 'Yunxing', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000006', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('7', 'Jia Xuming', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000007', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('8', 'Zhang Liming', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000008', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('9', 'Xue Lei', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000009', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('10', 'Zhang Jie', 'Female', '1990-10-09', '420177199010093652', 'unmarried', '1', 'Hainan', '5', 'zhangjie@qq.com', '13695557742', 'Meilan District, Haikou City', '92', '16', '34', null, 'Labor Contract', 'High school', 'no', 'Hainan Overseas Chinese', '2018-01-01', 'In service', '00000010', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('11', 'programmer35-2', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '91', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000011', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('12', 'Chen Jing2', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000012', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('13', 'Zhao Linhao2', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000013', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('14', 'Lu Cunliang2', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000014', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('15', 'Yao Sen2', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000015', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('16', 'Yunxing2', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000016', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('17', 'Jia Xuming2', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000017', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('18', 'Wang Yiting', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000018', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('19', 'Xue Lei2', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000019', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('20', 'Zhang Jie2', 'Female', '1990-10-09', '420177199010093652', 'unmarried', '1', 'Hainan', '5', 'zhangjie@qq.com', '13695557742', 'Meilan District, Haikou City', '92', '16', '34', null, 'Labor Contract', 'High school', 'no', 'Hainan Overseas Chinese', '2018-01-01', 'In service', '00000020', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('21', 'programmer35-3', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000021', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('22', 'Chen Jing3', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000022', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('24', 'Lu Cunliang3', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000024', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('25', 'Yao Sen3', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000025', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('26', 'Yunxing3', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000026', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('27', 'Jia Xuming3', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000027', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('28', 'Zhang Liming3', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000028', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('29', 'Xue Lei3', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000029', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('31', 'programmer35-4', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000031', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('32', 'Chen Jing4', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000032', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('33', 'Zhao Linhao4', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000033', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('34', 'Lu Cunliang4', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000034', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('35', 'Yao Sen4', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000035', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('36', 'Yunxing4', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000036', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('37', 'Jia Xuming4', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000037', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('38', 'Zhang Liming2', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000038', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('39', 'Xue Lei4', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000039', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('40', 'Zhang Jie4', 'Female', '1990-10-09', '420177199010093652', 'unmarried', '1', 'Hainan', '5', 'zhangjie@qq.com', '13695557742', 'Meilan District, Haikou City', '92', '16', '34', null, 'Labor Contract', 'High school', 'no', 'Hainan Overseas Chinese', '2018-01-01', 'In service', '00000040', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('41', 'programmer35-5', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000041', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('42', 'Chen Jing5', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000042', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('43', 'Zhao Linhao5', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000043', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('44', 'Lu Cunliang5', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000044', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('45', 'Yao Sen5', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000045', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('46', 'Yunxing5', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000046', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('47', 'Jia Xuming5', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000047', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('48', 'Zhang Liming5', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000048', '7', '2018-04-01', null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('49', 'Xue Lei5', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000049', '6', '2018-04-01', null, '2018-01-01', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('50', 'Zhang Jie5', 'Female', '1990-10-09', '420177199010093652', 'unmarried', '1', 'Hainan', '5', 'zhangjie@qq.com', '13695557742', 'Meilan District, Haikou City', '92', '16', '34', null, 'Labor Contract', 'High school', 'no', 'Hainan Overseas Chinese', '2018-01-01', 'In service', '00000050', '1', '2018-01-31', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('51', 'programmer35-6', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000051', '1', '2018-04-01', null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('52', 'Chen Jing6', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000052', '3', '2015-09-10', null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('53', 'Zhao Linhao6', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000053', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('54', 'Lu Cunliang6', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000054', '3.5', '2018-04-01', null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('55', 'Yao Sen6', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000055', '7', '2017-04-02', null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('56', 'Yunxing6', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000056', '5.25', '2018-04-01', null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1351', 'programmer35', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000001', '1', null, null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('1352', 'Chen Jing', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000002', '3', null, null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('1353', 'Zhao Linhao', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000003', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1354', 'Lu Cunliang', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000004', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1355', 'Yao Sen', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000005', '7', null, null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('1357', 'Jia Xuming', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000007', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1358', 'Zhang Liming', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000008', '7', null, null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('1359', 'Xue Lei', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000009', '6', null, null, '2018-01-01', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('1360', 'Zhang Jie', 'Female', '1990-10-09', '420177199010093652', 'unmarried', '1', 'Hainan', '5', 'zhangjie@qq.com', '13695557742', 'Meilan District, Haikou City', '92', '16', '34', null, 'Labor Contract', 'High school', 'no', 'Hainan Overseas Chinese', '2018-01-01', 'In service', '00000010', '1', null, null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('1361', 'programmer35-2', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000011', '1', null, null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('1362', 'Chen Jing2', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000012', '3', null, null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('1363', 'Zhao Linhao2', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000013', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1364', 'Lu Cunliang2', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000014', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1365', 'Yao Sen2', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000015', '7', null, null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('1366', 'Yunxing2', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000016', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1367', 'Jia Xuming2', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000017', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1368', 'Wang Yiting', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000018', '7', null, null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('1369', 'Xue Lei2', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000019', '1', null, null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('1370', 'Zhang Jie2', 'Female', '1990-10-09', '420177199010093652', 'unmarried', '1', 'Hainan', '5', 'zhangjie@qq.com', '13695557742', 'Meilan District, Haikou City', '92', '16', '34', null, 'Labor Contract', 'High school', 'no', 'Hainan Overseas Chinese', '2018-01-01', 'In service', '00000020', '1', null, null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('1371', 'programmer35-3', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000021', '1', null, null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('1372', 'Chen Jing3', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000022', '3', null, null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('1373', 'Lu Cunliang3', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000024', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1374', 'Yao Sen3', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000025', '7', null, null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('1375', 'Yunxing3', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000026', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1376', 'Jia Xuming3', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000027', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1377', 'Zhang Liming3', 'male', '1991-02-01', '610144199102014569', 'married', '1', 'Guangdong', '6', 'zhangliming@qq.com', '18979994478', 'Zhuhai, Guangdong', '91', '15', '33', null, 'Labor Contract', 'High school', 'archeology', 'Tsinghua University', '2018-01-01', 'In service', '00000028', '7', null, null, '2018-01-01', '2025-01-30', null);
+INSERT INTO `t_employee` VALUES ('1378', 'Xue Lei3', 'male', '1992-07-01', '610144199207017895', 'married', '1', 'Xian, Shaanxi', '13', 'xuelei@qq.com', '15648887741', 'Yanta District, Xian', '92', '14', '34', null, 'Labor Contract', 'junior high school', 'no', 'Huaxu Middle School', '2018-01-01', 'In service', '00000029', '6', null, null, '2018-01-01', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('1379', 'programmer35-4', 'male', '1990-01-01', '610122199001011256', 'married', '1', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '8', '9', '29', null, 'Labor Contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2018-01-01', 'In service', '00000031', '1', null, null, '2018-01-01', '2019-01-01', null);
+INSERT INTO `t_employee` VALUES ('1380', 'Chen Jing4', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000032', '3', null, null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('1381', 'Zhao Linhao4', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000033', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1382', 'Lu Cunliang4', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000034', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1383', 'Yao Sen4', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000035', '7', null, null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('1384', 'Yunxing4', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000036', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1385', 'Jia Xuming4', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000037', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1411', 'Xie Gong', 'Female', '1970-01-01', '618177197001011234', 'Divorce', '1', 'Jiangsu', '1', '584991843@qq.com', '18558887788', 'Beijing', '85', '12', '29', null, 'Labor Contract', 'Undergraduate', 'computer software', 'Nanhua University', '2018-01-01', 'In service', '00000038', '5', '2019-01-01', null, '2018-01-01', '2023-01-01', null);
+INSERT INTO `t_employee` VALUES ('1412', 'Lin Zhaoliang', 'male', '1990-01-01', '610122199809091234', 'married', '1', 'Guangdong', '13', '584991843@qq.com', '16767776654', 'Shenzhen, Guangdong', '91', '15', '33', null, 'Labor Contract', 'College', 'computer software', 'Guangdong Vocational and Technical College', '2018-01-01', 'In service', '00000039', '5', '2018-04-01', null, '2018-01-01', '2023-01-01', null);
+INSERT INTO `t_employee` VALUES ('1942', 'Test staff', 'male', '1989-12-31', '610122199001011256', 'married', '2', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '81', '10', '30', null, 'Labor contract', 'College', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000066', '1.75', '2018-03-31', null, '2017-12-31', '2019-09-30', null);
+INSERT INTO `t_employee` VALUES ('1943', 'Test staff2', 'male', '1989-12-31', '610122199001011256', 'married', '1', 'Shaanxi', '1', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '91', '9', '29', null, 'Labor contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000067', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
+INSERT INTO `t_employee` VALUES ('1944', 'Test staff3', 'male', '1989-12-31', '610122199001011256', 'married', '2', 'Shaanxi', '13', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '81', '10', '30', null, 'Labor contract', 'College', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000066', '1.75', '2018-03-31', null, '2017-12-31', '2019-09-30', null);
+INSERT INTO `t_employee` VALUES ('1945', 'Test staff4', 'male', '1989-12-31', '610122199001011256', 'married', '1', 'Shaanxi', '1', 'laowang@qq.com', '18565558897', 'Nanshan District, Shenzhen', '91', '9', '29', null, 'Labor contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000067', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
+INSERT INTO `t_employee` VALUES ('1946', 'Test staff5', 'Female', '1989-02-01', '421288198902011234', 'married', '1', 'Hainan', '1', 'chenjing@qq.com', '18795556693', 'Meilan District, Haikou City, Hainan Province', '82', '12', '30', null, 'Labor Contract', 'High school', 'marketing', 'Wuhan University', '2015-06-09', 'In service', '00000032', '3', null, null, '2015-06-09', '2018-06-08', null);
+INSERT INTO `t_employee` VALUES ('1947', 'Test staff6', 'male', '1993-03-04', '610122199303041456', 'unmarried', '1', 'Shaanxi', '3', 'zhao@qq.com', '15698887795', 'Lianhu District, Xian, Shaanxi Province', '91', '12', '33', null, 'Labor Contract', 'PhD', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000033', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1948', 'Test staff7', 'male', '1990-01-03', '610122199001031456', 'married', '1', 'Shaanxi', '3', 'zhao@qq.com', '15612347795', 'Lianhu District, Xian, Shaanxi Province', '92', '12', '34', null, 'Labor Contract', 'High school', 'Electronic engineering', 'Harbin University of Science and Technology', '2018-01-01', 'In service', '00000034', '3.5', null, null, '2018-01-01', '2021-07-14', null);
+INSERT INTO `t_employee` VALUES ('1949', 'Test staff8', 'male', '1991-02-05', '610122199102058952', 'married', '1', 'Henan', '3', 'yaosen@qq.com', '14785559936', 'Renmin Avenue, Luoyang, Henan58number', '92', '15', '34', null, 'Labor Contract', 'junior high school', 'Interior decoration design', 'Northwest University', '2017-01-02', 'In service', '00000035', '7', null, null, '2017-01-02', '2024-01-17', null);
+INSERT INTO `t_employee` VALUES ('1950', 'Test staff9', 'Female', '1993-01-05', '610122199301054789', 'married', '1', 'Xian, Shaanxi', '1', 'yunxing@qq.com', '15644442252', 'Xian New District, Shaanxi', '92', '16', '34', null, 'Labor contract', 'masters degree', 'Communication Engineering', 'Xian Electronic Technology School', '2018-01-01', 'In service', '00000036', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1951', 'Test staff10', 'male', '1993-11-11', '610122199311111234', 'married', '1', 'Guangzhou, Guangdong', '4', 'jiaxuming@qq.com', '15644441234', 'Xiancun Road, Tianhe District, Guangzhou City, Guangdong Province', '78', '15', '33', null, 'Labor contract', 'junior high school', 'Communication Engineering', 'Northwest University', '2018-01-01', 'In service', '00000037', '5.25', null, null, '2018-01-01', '2023-04-13', null);
+INSERT INTO `t_employee` VALUES ('1952', 'Test staff11', 'Female', '1970-01-01', '618177197001011234', 'Divorce', '1', 'Jiangsu', '1', '584991843@qq.com', '18558887788', 'Beijing', '85', '12', '29', null, 'Labor Contract', 'Undergraduate', 'computer software', 'Nanhua University', '2018-01-01', 'In service', '00000038', '5', '2019-01-01', null, '2018-01-01', '2023-01-01', null);
+INSERT INTO `t_employee` VALUES ('1953', 'Test staff12', 'male', '1990-01-01', '610122199809091234', 'married', '1', 'Guangdong', '13', '584991843@qq.com', '16767776654', 'Shenzhen, Guangdong', '91', '15', '33', null, 'Labor Contract', 'College', 'computer software', 'Guangdong Vocational and Technical College', '2018-01-01', 'In service', '00000039', '5', '2018-04-01', null, '2018-01-01', '2023-01-01', null);
+INSERT INTO `t_employee` VALUES ('1954', 'Test staff3', 'male', '1989-12-31', '610122199001011256', 'married', '1', 'Shaanxi', '13', '454407628@qq.com', '18565558897', 'Nanshan District, Shenzhen', '91', '10', '36', null, 'Labor contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000068', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
+INSERT INTO `t_employee` VALUES ('1955', 'Test staff', 'male', '1989-12-31', '610122199001011256', 'married', '1', 'Shaanxi', '13', '454407628@qq.com', '18565558897', 'Nanshan District, Shenzhen', '91', '10', '36', null, 'Labor contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000069', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
+INSERT INTO `t_employee` VALUES ('1956', 'Test staff', 'male', '1989-12-31', '610122199001011256', 'married', '1', 'Shaanxi', '13', '454407628@qq.com', '18565558897', 'Nanshan District, Shenzhen', '78', '9', '29', null, 'Labor contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000070', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
+INSERT INTO `t_employee` VALUES ('1957', 'Test staff', 'male', '1989-12-31', '610122199001011256', 'married', '1', 'Shaanxi', '13', '454407628@qq.com', '18565558897', 'Nanshan District, Shenzhen', '89', '9', '29', null, 'Labor contract', 'Undergraduate', 'Information management and information system', 'Shenzhen University', '2017-12-31', 'In service', '00000071', '2', '2018-03-31', null, '2017-12-31', '2019-12-31', null);
 
 -- ----------------------------
 -- Table structure for t_jobtitle
 -- ----------------------------
 DROP TABLE IF EXISTS `t_jobtitle`;
 CREATE TABLE `t_jobtitle` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(32) DEFAULT NULL COMMENT '职称名称',
-  `level` enum('正高级','副高级','中级','初级','员级') DEFAULT NULL COMMENT '职称等级',
-  `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(32) DEFAULT NULL COMMENT 'Job title',
+  `level` enum('Positive Senior','Deputy Senior','intermediate','primary','Staff') DEFAULT NULL COMMENT 'Title level',
+  `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation time',
   `enabled` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='职称';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='job title';
 
 -- ----------------------------
 -- Records of t_jobtitle
 -- ----------------------------
-INSERT INTO `t_jobtitle` VALUES ('9', '教授', '正高级', '2018-01-11 00:00:00', '1');
-INSERT INTO `t_jobtitle` VALUES ('10', '副教授', '副高级', '2018-01-11 21:19:20', '1');
-INSERT INTO `t_jobtitle` VALUES ('12', '助教', '初级', '2018-01-11 21:35:39', '1');
-INSERT INTO `t_jobtitle` VALUES ('13', '讲师', '中级', '2018-01-11 00:00:00', '1');
-INSERT INTO `t_jobtitle` VALUES ('14', '初级工程师', '初级', '2018-01-14 00:00:00', '1');
-INSERT INTO `t_jobtitle` VALUES ('15', '中级工程师66', '中级', '2018-01-14 00:00:00', '1');
-INSERT INTO `t_jobtitle` VALUES ('16', '高级工程师', '副高级', '2018-01-14 16:19:14', '1');
-INSERT INTO `t_jobtitle` VALUES ('17', '骨灰级工程师', '正高级', '2018-01-14 16:19:24', '1');
-INSERT INTO `t_jobtitle` VALUES ('18', '测试职称1', '副高级', '2020-01-02 13:19:21', '0');
+INSERT INTO `t_jobtitle` VALUES ('9', 'professor', 'Positive Senior', '2018-01-11 00:00:00', '1');
+INSERT INTO `t_jobtitle` VALUES ('10', 'Associate Professor', 'Deputy Senior', '2018-01-11 21:19:20', '1');
+INSERT INTO `t_jobtitle` VALUES ('12', 'Teaching assistant', 'primary', '2018-01-11 21:35:39', '1');
+INSERT INTO `t_jobtitle` VALUES ('13', 'lecturer', 'intermediate', '2018-01-11 00:00:00', '1');
+INSERT INTO `t_jobtitle` VALUES ('14', 'Junior engineer', 'primary', '2018-01-14 00:00:00', '1');
+INSERT INTO `t_jobtitle` VALUES ('15', 'mid-level engineer66', 'intermediate', '2018-01-14 00:00:00', '1');
+INSERT INTO `t_jobtitle` VALUES ('16', 'Senior engineer', 'Deputy Senior', '2018-01-14 16:19:14', '1');
+INSERT INTO `t_jobtitle` VALUES ('17', 'Ashes engineer', 'Positive Senior', '2018-01-14 16:19:24', '1');
+INSERT INTO `t_jobtitle` VALUES ('18', 'Test title1', 'Deputy Senior', '2020-01-02 13:19:21', '0');
 
 -- ----------------------------
 -- Table structure for t_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `t_menu`;
 CREATE TABLE `t_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
   `url` varchar(64) DEFAULT NULL,
   `path` varchar(64) DEFAULT NULL,
   `component` varchar(64) DEFAULT NULL,
@@ -443,54 +443,54 @@ CREATE TABLE `t_menu` (
   PRIMARY KEY (`id`),
   KEY `idx_parentId` (`parentId`) USING BTREE,
   CONSTRAINT `fk_m_parentId` FOREIGN KEY (`parentId`) REFERENCES `t_menu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='menu';
 
 -- ----------------------------
 -- Records of t_menu
 -- ----------------------------
-INSERT INTO `t_menu` VALUES ('1', '/', null, null, '所有', null, null, null, null, '1');
-INSERT INTO `t_menu` VALUES ('2', '/', '/home', 'Home', '员工资料', 'fa fa-user-circle-o', null, '1', '1', '1');
-INSERT INTO `t_menu` VALUES ('3', '/', '/home', 'Home', '人事管理', 'fa fa-address-card-o', null, '1', '1', '1');
-INSERT INTO `t_menu` VALUES ('4', '/', '/home', 'Home', '薪资管理', 'fa fa-money', null, '1', '1', '1');
-INSERT INTO `t_menu` VALUES ('5', '/', '/home', 'Home', '统计管理', 'fa fa-bar-chart', null, '1', '1', '1');
-INSERT INTO `t_menu` VALUES ('6', '/', '/home', 'Home', '系统管理', 'fa fa-windows', null, '1', '1', '1');
-INSERT INTO `t_menu` VALUES ('7', '/employee/basic/**', '/emp/basic', 'EmpBasic', '基本资料', null, null, '1', '2', '1');
-INSERT INTO `t_menu` VALUES ('8', '/employee/advanced/**', '/emp/adv', 'EmpAdv', '高级资料', null, null, '1', '2', '1');
-INSERT INTO `t_menu` VALUES ('9', '/personnel/emp/**', '/per/emp', 'PerEmp', '员工资料', null, null, '1', '3', '1');
-INSERT INTO `t_menu` VALUES ('10', '/personnel/ec/**', '/per/ec', 'PerEc', '员工奖惩', null, null, '1', '3', '1');
-INSERT INTO `t_menu` VALUES ('11', '/personnel/train/**', '/per/train', 'PerTrain', '员工培训', null, null, '1', '3', '1');
-INSERT INTO `t_menu` VALUES ('12', '/personnel/salary/**', '/per/salary', 'PerSalary', '员工调薪', null, null, '1', '3', '1');
-INSERT INTO `t_menu` VALUES ('13', '/personnel/remove/**', '/per/mv', 'PerMv', '员工调动', null, null, '1', '3', '1');
-INSERT INTO `t_menu` VALUES ('14', '/salary/sob/**', '/sal/sob', 'SalSob', '工资账套管理', null, null, '1', '4', '1');
-INSERT INTO `t_menu` VALUES ('15', '/salary/sobcfg/**', '/sal/sobcfg', 'SalSobCfg', '员工账套设置', null, null, '1', '4', '1');
-INSERT INTO `t_menu` VALUES ('16', '/salary/table/**', '/sal/table', 'SalTable', '工资表管理', null, null, '1', '4', '1');
-INSERT INTO `t_menu` VALUES ('17', '/salary/month/**', '/sal/month', 'SalMonth', '月末处理', null, null, '1', '4', '1');
-INSERT INTO `t_menu` VALUES ('18', '/salary/search/**', '/sal/search', 'SalSearch', '工资表查询', null, null, '1', '4', '1');
-INSERT INTO `t_menu` VALUES ('19', '/statistics/all/**', '/sta/all', 'StaAll', '综合信息统计', null, null, '1', '5', '1');
-INSERT INTO `t_menu` VALUES ('20', '/statistics/score/**', '/sta/score', 'StaScore', '员工积分统计', null, null, '1', '5', '1');
-INSERT INTO `t_menu` VALUES ('21', '/statistics/personnel/**', '/sta/pers', 'StaPers', '人事信息统计', null, null, '1', '5', '1');
-INSERT INTO `t_menu` VALUES ('22', '/statistics/recored/**', '/sta/record', 'StaRecord', '人事记录统计', null, null, '1', '5', '1');
-INSERT INTO `t_menu` VALUES ('23', '/system/basic/**', '/sys/basic', 'SysBasic', '基础信息设置', null, null, '1', '6', '1');
-INSERT INTO `t_menu` VALUES ('24', '/system/cfg/**', '/sys/cfg', 'SysCfg', '系统管理', null, null, '1', '6', '1');
-INSERT INTO `t_menu` VALUES ('25', '/system/log/**', '/sys/log', 'SysLog', '操作日志管理', null, null, '1', '6', '1');
-INSERT INTO `t_menu` VALUES ('26', '/system/user/**', '/sys/user', 'SysUser', '用户管理', null, null, '1', '6', '1');
-INSERT INTO `t_menu` VALUES ('27', '/system/data/**', '/sys/data', 'SysData', '备份恢复数据库', null, null, '1', '6', '1');
-INSERT INTO `t_menu` VALUES ('28', '/system/init/**', '/sys/init', 'SysInit', '初始化数据库', null, null, '1', '6', '1');
+INSERT INTO `t_menu` VALUES ('1', '/', null, null, 'all', null, null, null, null, '1');
+INSERT INTO `t_menu` VALUES ('2', '/', '/home', 'Home', 'Employee information', 'fa fa-user-circle-o', null, '1', '1', '1');
+INSERT INTO `t_menu` VALUES ('3', '/', '/home', 'Home', 'HR management', 'fa fa-address-card-o', null, '1', '1', '1');
+INSERT INTO `t_menu` VALUES ('4', '/', '/home', 'Home', 'Payroll management', 'fa fa-money', null, '1', '1', '1');
+INSERT INTO `t_menu` VALUES ('5', '/', '/home', 'Home', 'Statistics Management', 'fa fa-bar-chart', null, '1', '1', '1');
+INSERT INTO `t_menu` VALUES ('6', '/', '/home', 'Home', 'System Management', 'fa fa-windows', null, '1', '1', '1');
+INSERT INTO `t_menu` VALUES ('7', '/employee/basic/**', '/emp/basic', 'EmpBasic', 'basic information', null, null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('8', '/employee/advanced/**', '/emp/adv', 'EmpAdv', 'Advanced Information', null, null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('9', '/personnel/emp/**', '/per/emp', 'PerEmp', 'Employee information', null, null, '1', '3', '1');
+INSERT INTO `t_menu` VALUES ('10', '/personnel/ec/**', '/per/ec', 'PerEc', 'Employee rewards and punishments', null, null, '1', '3', '1');
+INSERT INTO `t_menu` VALUES ('11', '/personnel/train/**', '/per/train', 'PerTrain', 'employee training', null, null, '1', '3', '1');
+INSERT INTO `t_menu` VALUES ('12', '/personnel/salary/**', '/per/salary', 'PerSalary', 'Employee salary adjustment', null, null, '1', '3', '1');
+INSERT INTO `t_menu` VALUES ('13', '/personnel/remove/**', '/per/mv', 'PerMv', 'Staff transfer', null, null, '1', '3', '1');
+INSERT INTO `t_menu` VALUES ('14', '/salary/sob/**', '/sal/sob', 'SalSob', 'Payroll set management', null, null, '1', '4', '1');
+INSERT INTO `t_menu` VALUES ('15', '/salary/sobcfg/**', '/sal/sobcfg', 'SalSobCfg', 'Employee account set', null, null, '1', '4', '1');
+INSERT INTO `t_menu` VALUES ('16', '/salary/table/**', '/sal/table', 'SalTable', 'Payroll management', null, null, '1', '4', '1');
+INSERT INTO `t_menu` VALUES ('17', '/salary/month/**', '/sal/month', 'SalMonth', 'End of the month', null, null, '1', '4', '1');
+INSERT INTO `t_menu` VALUES ('18', '/salary/search/**', '/sal/search', 'SalSearch', 'Payroll query', null, null, '1', '4', '1');
+INSERT INTO `t_menu` VALUES ('19', '/statistics/all/**', '/sta/all', 'StaAll', 'Comprehensive Information Statistics', null, null, '1', '5', '1');
+INSERT INTO `t_menu` VALUES ('20', '/statistics/score/**', '/sta/score', 'StaScore', 'Employee points statistics', null, null, '1', '5', '1');
+INSERT INTO `t_menu` VALUES ('21', '/statistics/personnel/**', '/sta/pers', 'StaPers', 'Personnel information statistics', null, null, '1', '5', '1');
+INSERT INTO `t_menu` VALUES ('22', '/statistics/recored/**', '/sta/record', 'StaRecord', 'Personnel record statistics', null, null, '1', '5', '1');
+INSERT INTO `t_menu` VALUES ('23', '/system/basic/**', '/sys/basic', 'SysBasic', 'Basic information settings', null, null, '1', '6', '1');
+INSERT INTO `t_menu` VALUES ('24', '/system/cfg/**', '/sys/cfg', 'SysCfg', 'System Management', null, null, '1', '6', '1');
+INSERT INTO `t_menu` VALUES ('25', '/system/log/**', '/sys/log', 'SysLog', 'Operation log management', null, null, '1', '6', '1');
+INSERT INTO `t_menu` VALUES ('26', '/system/user/**', '/sys/user', 'SysUser', 'User Management', null, null, '1', '6', '1');
+INSERT INTO `t_menu` VALUES ('27', '/system/data/**', '/sys/data', 'SysData', 'Backup and restore the database', null, null, '1', '6', '1');
+INSERT INTO `t_menu` VALUES ('28', '/system/init/**', '/sys/init', 'SysInit', 'Initialize the database', null, null, '1', '6', '1');
 
 -- ----------------------------
 -- Table structure for t_menu_role
 -- ----------------------------
 DROP TABLE IF EXISTS `t_menu_role`;
 CREATE TABLE `t_menu_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `mid` int(11) DEFAULT NULL COMMENT '菜单id',
-  `rid` int(11) DEFAULT NULL COMMENT '角色id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `mid` int(11) DEFAULT NULL COMMENT 'menuid',
+  `rid` int(11) DEFAULT NULL COMMENT 'Rolesid',
   PRIMARY KEY (`id`),
   KEY `idx_mid` (`mid`) USING BTREE,
   KEY `idx_rid` (`rid`) USING BTREE,
   CONSTRAINT `fk_mr_mid` FOREIGN KEY (`mid`) REFERENCES `t_menu` (`id`),
   CONSTRAINT `fk_mr_rid` FOREIGN KEY (`rid`) REFERENCES `t_role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=278 DEFAULT CHARSET=utf8 COMMENT='菜单与角色';
+) ENGINE=InnoDB AUTO_INCREMENT=278 DEFAULT CHARSET=utf8 COMMENT='Menus and characters';
 
 -- ----------------------------
 -- Records of t_menu_role
@@ -554,121 +554,121 @@ INSERT INTO `t_menu_role` VALUES ('277', '28', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_nation`;
 CREATE TABLE `t_nation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(32) DEFAULT NULL COMMENT '名称',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(32) DEFAULT NULL COMMENT 'name',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='民族';
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='Nation';
 
 -- ----------------------------
 -- Records of t_nation
 -- ----------------------------
-INSERT INTO `t_nation` VALUES ('1', '汉族');
-INSERT INTO `t_nation` VALUES ('2', '蒙古族');
-INSERT INTO `t_nation` VALUES ('3', '回族');
-INSERT INTO `t_nation` VALUES ('4', '藏族');
-INSERT INTO `t_nation` VALUES ('5', '维吾尔族');
-INSERT INTO `t_nation` VALUES ('6', '苗族');
-INSERT INTO `t_nation` VALUES ('7', '彝族');
-INSERT INTO `t_nation` VALUES ('8', '壮族');
-INSERT INTO `t_nation` VALUES ('9', '布依族');
-INSERT INTO `t_nation` VALUES ('10', '朝鲜族');
-INSERT INTO `t_nation` VALUES ('11', '满族');
-INSERT INTO `t_nation` VALUES ('12', '侗族');
-INSERT INTO `t_nation` VALUES ('13', '瑶族');
-INSERT INTO `t_nation` VALUES ('14', '白族');
-INSERT INTO `t_nation` VALUES ('15', '土家族');
-INSERT INTO `t_nation` VALUES ('16', '哈尼族');
-INSERT INTO `t_nation` VALUES ('17', '哈萨克族');
-INSERT INTO `t_nation` VALUES ('18', '傣族');
-INSERT INTO `t_nation` VALUES ('19', '黎族');
-INSERT INTO `t_nation` VALUES ('20', '傈僳族');
-INSERT INTO `t_nation` VALUES ('21', '佤族');
-INSERT INTO `t_nation` VALUES ('22', '畲族');
-INSERT INTO `t_nation` VALUES ('23', '高山族');
-INSERT INTO `t_nation` VALUES ('24', '拉祜族');
-INSERT INTO `t_nation` VALUES ('25', '水族');
-INSERT INTO `t_nation` VALUES ('26', '东乡族');
-INSERT INTO `t_nation` VALUES ('27', '纳西族');
-INSERT INTO `t_nation` VALUES ('28', '景颇族');
-INSERT INTO `t_nation` VALUES ('29', '柯尔克孜族');
-INSERT INTO `t_nation` VALUES ('30', '土族');
-INSERT INTO `t_nation` VALUES ('31', '达斡尔族');
-INSERT INTO `t_nation` VALUES ('32', '仫佬族');
-INSERT INTO `t_nation` VALUES ('33', '羌族');
-INSERT INTO `t_nation` VALUES ('34', '布朗族');
-INSERT INTO `t_nation` VALUES ('35', '撒拉族');
-INSERT INTO `t_nation` VALUES ('36', '毛难族');
-INSERT INTO `t_nation` VALUES ('37', '仡佬族');
-INSERT INTO `t_nation` VALUES ('38', '锡伯族');
-INSERT INTO `t_nation` VALUES ('39', '阿昌族');
-INSERT INTO `t_nation` VALUES ('40', '普米族');
-INSERT INTO `t_nation` VALUES ('41', '塔吉克族');
-INSERT INTO `t_nation` VALUES ('42', '怒族');
-INSERT INTO `t_nation` VALUES ('43', '乌孜别克族');
-INSERT INTO `t_nation` VALUES ('44', '俄罗斯族');
-INSERT INTO `t_nation` VALUES ('45', '鄂温克族');
-INSERT INTO `t_nation` VALUES ('46', '崩龙族');
-INSERT INTO `t_nation` VALUES ('47', '保安族');
-INSERT INTO `t_nation` VALUES ('48', '裕固族');
-INSERT INTO `t_nation` VALUES ('49', '京族');
-INSERT INTO `t_nation` VALUES ('50', '塔塔尔族');
-INSERT INTO `t_nation` VALUES ('51', '独龙族');
-INSERT INTO `t_nation` VALUES ('52', '鄂伦春族');
-INSERT INTO `t_nation` VALUES ('53', '赫哲族');
-INSERT INTO `t_nation` VALUES ('54', '门巴族');
-INSERT INTO `t_nation` VALUES ('55', '珞巴族');
-INSERT INTO `t_nation` VALUES ('56', '基诺族');
+INSERT INTO `t_nation` VALUES ('1', 'Han nationality');
+INSERT INTO `t_nation` VALUES ('2', 'Mongolian');
+INSERT INTO `t_nation` VALUES ('3', 'Hui');
+INSERT INTO `t_nation` VALUES ('4', 'Tibetan');
+INSERT INTO `t_nation` VALUES ('5', 'Uighur');
+INSERT INTO `t_nation` VALUES ('6', 'Hmong');
+INSERT INTO `t_nation` VALUES ('7', 'Yi nationality');
+INSERT INTO `t_nation` VALUES ('8', 'Zhuang');
+INSERT INTO `t_nation` VALUES ('9', 'Buyi');
+INSERT INTO `t_nation` VALUES ('10', 'Korean');
+INSERT INTO `t_nation` VALUES ('11', 'Manchu');
+INSERT INTO `t_nation` VALUES ('12', 'Dong Nationality');
+INSERT INTO `t_nation` VALUES ('13', 'Yao nationality');
+INSERT INTO `t_nation` VALUES ('14', 'Bai');
+INSERT INTO `t_nation` VALUES ('15', 'Tujia');
+INSERT INTO `t_nation` VALUES ('16', 'Hani');
+INSERT INTO `t_nation` VALUES ('17', 'Kazakh');
+INSERT INTO `t_nation` VALUES ('18', 'Dai people');
+INSERT INTO `t_nation` VALUES ('19', 'Li nationality');
+INSERT INTO `t_nation` VALUES ('20', 'Lisu');
+INSERT INTO `t_nation` VALUES ('21', 'Wa Nationality');
+INSERT INTO `t_nation` VALUES ('22', 'She Nationality');
+INSERT INTO `t_nation` VALUES ('23', 'Gaoshan');
+INSERT INTO `t_nation` VALUES ('24', 'Lahu');
+INSERT INTO `t_nation` VALUES ('25', 'Aqua');
+INSERT INTO `t_nation` VALUES ('26', 'Dongxiang');
+INSERT INTO `t_nation` VALUES ('27', 'Naxi');
+INSERT INTO `t_nation` VALUES ('28', 'Jingpo');
+INSERT INTO `t_nation` VALUES ('29', 'Kirgiz');
+INSERT INTO `t_nation` VALUES ('30', 'Tu');
+INSERT INTO `t_nation` VALUES ('31', 'Daur');
+INSERT INTO `t_nation` VALUES ('32', 'Mulam');
+INSERT INTO `t_nation` VALUES ('33', 'Qiang');
+INSERT INTO `t_nation` VALUES ('34', 'Blang');
+INSERT INTO `t_nation` VALUES ('35', 'Salar');
+INSERT INTO `t_nation` VALUES ('36', 'Mao Nan');
+INSERT INTO `t_nation` VALUES ('37', 'Gelao');
+INSERT INTO `t_nation` VALUES ('38', 'Xibe');
+INSERT INTO `t_nation` VALUES ('39', 'Achang');
+INSERT INTO `t_nation` VALUES ('40', 'Pumi');
+INSERT INTO `t_nation` VALUES ('41', 'Tajik');
+INSERT INTO `t_nation` VALUES ('42', 'Nu');
+INSERT INTO `t_nation` VALUES ('43', 'Uzbek');
+INSERT INTO `t_nation` VALUES ('44', 'Russian');
+INSERT INTO `t_nation` VALUES ('45', 'Ewenki');
+INSERT INTO `t_nation` VALUES ('46', 'Benglong tribe');
+INSERT INTO `t_nation` VALUES ('47', 'Baoan');
+INSERT INTO `t_nation` VALUES ('48', 'Yugu');
+INSERT INTO `t_nation` VALUES ('49', 'Jing nationality');
+INSERT INTO `t_nation` VALUES ('50', 'Tatar');
+INSERT INTO `t_nation` VALUES ('51', 'Dulong');
+INSERT INTO `t_nation` VALUES ('52', 'Oroqen');
+INSERT INTO `t_nation` VALUES ('53', 'Hezhe');
+INSERT INTO `t_nation` VALUES ('54', 'Menba');
+INSERT INTO `t_nation` VALUES ('55', 'Lhoba');
+INSERT INTO `t_nation` VALUES ('56', 'Jinuo');
 
 -- ----------------------------
 -- Table structure for t_politicsstatus
 -- ----------------------------
 DROP TABLE IF EXISTS `t_politicsstatus`;
 CREATE TABLE `t_politicsstatus` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(32) DEFAULT NULL COMMENT '名称',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(32) DEFAULT NULL COMMENT 'name',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='政治面貌';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='political status';
 
 -- ----------------------------
 -- Records of t_politicsstatus
 -- ----------------------------
-INSERT INTO `t_politicsstatus` VALUES ('1', '中共党员');
-INSERT INTO `t_politicsstatus` VALUES ('2', '中共预备党员');
-INSERT INTO `t_politicsstatus` VALUES ('3', '共青团员');
-INSERT INTO `t_politicsstatus` VALUES ('4', '民革党员');
-INSERT INTO `t_politicsstatus` VALUES ('5', '民盟盟员');
-INSERT INTO `t_politicsstatus` VALUES ('6', '民建会员');
-INSERT INTO `t_politicsstatus` VALUES ('7', '民进会员');
-INSERT INTO `t_politicsstatus` VALUES ('8', '农工党党员');
-INSERT INTO `t_politicsstatus` VALUES ('9', '致公党党员');
-INSERT INTO `t_politicsstatus` VALUES ('10', '九三学社社员');
-INSERT INTO `t_politicsstatus` VALUES ('11', '台盟盟员');
-INSERT INTO `t_politicsstatus` VALUES ('12', '无党派民主人士');
-INSERT INTO `t_politicsstatus` VALUES ('13', '普通公民');
+INSERT INTO `t_politicsstatus` VALUES ('1', 'Communist Party members');
+INSERT INTO `t_politicsstatus` VALUES ('2', 'Communist probationary member');
+INSERT INTO `t_politicsstatus` VALUES ('3', 'Member of the Communist Youth League');
+INSERT INTO `t_politicsstatus` VALUES ('4', 'Member of the National Revolutionary Party');
+INSERT INTO `t_politicsstatus` VALUES ('5', 'League members');
+INSERT INTO `t_politicsstatus` VALUES ('6', 'DAB members');
+INSERT INTO `t_politicsstatus` VALUES ('7', 'Democratic Progressive Member');
+INSERT INTO `t_politicsstatus` VALUES ('8', 'Agrarian Party Member');
+INSERT INTO `t_politicsstatus` VALUES ('9', 'To the party members');
+INSERT INTO `t_politicsstatus` VALUES ('10', 'Member of Jiu San Society');
+INSERT INTO `t_politicsstatus` VALUES ('11', 'Taiwan League member');
+INSERT INTO `t_politicsstatus` VALUES ('12', 'Nonpartisan democrats');
+INSERT INTO `t_politicsstatus` VALUES ('13', 'Ordinary citizen');
 
 -- ----------------------------
 -- Table structure for t_position
 -- ----------------------------
 DROP TABLE IF EXISTS `t_position`;
 CREATE TABLE `t_position` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(32) DEFAULT NULL COMMENT '职位名称',
-  `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(32) DEFAULT NULL COMMENT 'Job Title',
+  `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation time',
   `enabled` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COMMENT='职位';
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COMMENT='position';
 
 -- ----------------------------
 -- Records of t_position
 -- ----------------------------
-INSERT INTO `t_position` VALUES ('29', '技术总监', '2018-01-11 21:13:42', '1');
-INSERT INTO `t_position` VALUES ('30', '运营总监', '2018-01-11 21:13:48', '1');
-INSERT INTO `t_position` VALUES ('31', '市场总监', '2018-01-11 00:00:00', '1');
-INSERT INTO `t_position` VALUES ('33', '研发工程师', '2018-01-14 00:00:00', '1');
-INSERT INTO `t_position` VALUES ('34', '运维工程师', '2018-01-14 16:11:41', '1');
-INSERT INTO `t_position` VALUES ('36', 'Java研发经理', '2019-10-01 00:00:00', '1');
-INSERT INTO `t_position` VALUES ('41', '测试职位1', '2020-01-02 10:06:03', '0');
+INSERT INTO `t_position` VALUES ('29', 'technical director', '2018-01-11 21:13:42', '1');
+INSERT INTO `t_position` VALUES ('30', 'Operations Director', '2018-01-11 21:13:48', '1');
+INSERT INTO `t_position` VALUES ('31', 'Director of Marketing', '2018-01-11 00:00:00', '1');
+INSERT INTO `t_position` VALUES ('33', 'R &amp; D Engineer', '2018-01-14 00:00:00', '1');
+INSERT INTO `t_position` VALUES ('34', 'Operation and Maintenance Engineer', '2018-01-14 16:11:41', '1');
+INSERT INTO `t_position` VALUES ('36', 'JavaR &amp; D Manager', '2019-10-01 00:00:00', '1');
+INSERT INTO `t_position` VALUES ('41', 'Test position1', '2020-01-02 10:06:03', '0');
 INSERT INTO `t_position` VALUES ('42', 'aa', '2020-01-18 10:33:11', '1');
 INSERT INTO `t_position` VALUES ('45', 'bb', '2020-01-18 10:36:32', '1');
 INSERT INTO `t_position` VALUES ('47', '11', '2020-01-18 10:39:02', '1');
@@ -680,95 +680,95 @@ INSERT INTO `t_position` VALUES ('49', 'aaccc', '2020-01-18 10:51:15', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role`;
 CREATE TABLE `t_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(64) DEFAULT NULL COMMENT '角色名称',
-  `nameZh` varchar(64) DEFAULT NULL COMMENT '角色中文名称',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(64) DEFAULT NULL COMMENT 'Role Name',
+  `nameZh` varchar(64) DEFAULT NULL COMMENT 'Chinese character name',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='角色';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='Roles';
 
 -- ----------------------------
 -- Records of t_role
 -- ----------------------------
-INSERT INTO `t_role` VALUES ('1', 'ROLE_manager', '部门经理');
-INSERT INTO `t_role` VALUES ('2', 'ROLE_personnel', '人事专员');
-INSERT INTO `t_role` VALUES ('3', 'ROLE_recruiter', '招聘主管');
-INSERT INTO `t_role` VALUES ('4', 'ROLE_train', '培训主管');
-INSERT INTO `t_role` VALUES ('5', 'ROLE_performance', '薪酬绩效主管');
-INSERT INTO `t_role` VALUES ('6', 'ROLE_admin', '系统管理员');
-INSERT INTO `t_role` VALUES ('14', 'ROLE_test1', '测试角色1');
-INSERT INTO `t_role` VALUES ('15', 'ROLE_test2', '测试角色2');
+INSERT INTO `t_role` VALUES ('1', 'ROLE_manager', 'Department manager');
+INSERT INTO `t_role` VALUES ('2', 'ROLE_personnel', 'Personnel Commissioner');
+INSERT INTO `t_role` VALUES ('3', 'ROLE_recruiter', 'Recruitment supervisor');
+INSERT INTO `t_role` VALUES ('4', 'ROLE_train', 'Training Director');
+INSERT INTO `t_role` VALUES ('5', 'ROLE_performance', 'Compensation Performance Supervisor');
+INSERT INTO `t_role` VALUES ('6', 'ROLE_admin', 'System administrator');
+INSERT INTO `t_role` VALUES ('14', 'ROLE_test1', 'Test role1');
+INSERT INTO `t_role` VALUES ('15', 'ROLE_test2', 'Test role2');
 
 -- ----------------------------
 -- Table structure for t_salary
 -- ----------------------------
 DROP TABLE IF EXISTS `t_salary`;
 CREATE TABLE `t_salary` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(32) DEFAULT NULL COMMENT '账套名称',
-  `basicSalary` int(11) DEFAULT NULL COMMENT '基本工资',
-  `bonus` int(11) DEFAULT NULL COMMENT '奖金',
-  `lunchSalary` int(11) DEFAULT NULL COMMENT '午餐补助',
-  `trafficSalary` int(11) DEFAULT NULL COMMENT '交通补助',
-  `allSalary` int(11) DEFAULT NULL COMMENT '应发工资',
-  `pensionBase` int(11) DEFAULT NULL COMMENT '养老金基数',
-  `pensionPer` float DEFAULT NULL COMMENT '养老金比率',
-  `medicalBase` int(11) DEFAULT NULL COMMENT '医疗保险基数',
-  `medicalPer` float DEFAULT NULL COMMENT '医疗保险比率',
-  `accumulationFundBase` int(11) DEFAULT NULL COMMENT '公积金基数',
-  `accumulationFundPer` float DEFAULT NULL COMMENT '公积金比率',
-  `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(32) DEFAULT NULL COMMENT 'A / C set name',
+  `basicSalary` int(11) DEFAULT NULL COMMENT 'Basic wage',
+  `bonus` int(11) DEFAULT NULL COMMENT 'bonus',
+  `lunchSalary` int(11) DEFAULT NULL COMMENT 'Lunch allowance',
+  `trafficSalary` int(11) DEFAULT NULL COMMENT 'Transport Allowance',
+  `allSalary` int(11) DEFAULT NULL COMMENT 'Payable',
+  `pensionBase` int(11) DEFAULT NULL COMMENT 'Pension base',
+  `pensionPer` float DEFAULT NULL COMMENT 'Pension ratio',
+  `medicalBase` int(11) DEFAULT NULL COMMENT 'Medical insurance base',
+  `medicalPer` float DEFAULT NULL COMMENT 'Medical insurance ratio',
+  `accumulationFundBase` int(11) DEFAULT NULL COMMENT 'Provident Fund Base',
+  `accumulationFundPer` float DEFAULT NULL COMMENT 'Provident Fund Ratio',
+  `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='工资账套';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='Payroll';
 
 -- ----------------------------
 -- Records of t_salary
 -- ----------------------------
-INSERT INTO `t_salary` VALUES ('9', '市场部工资账套', '9000', '4000', '800', '500', null, '2000', '0.07', '2000', '0.07', '2000', '0.07', '2018-01-24 00:00:00');
-INSERT INTO `t_salary` VALUES ('10', '人事部工资账套', '2000', '2000', '400', '1000', null, '2000', '0.07', '2000', '0.07', '2000', '0.07', '2018-01-01 00:00:00');
-INSERT INTO `t_salary` VALUES ('13', '运维部工资账套', '20000', '3000', '500', '500', null, '4000', '0.07', '4000', '0.07', '4000', '0.07', '2018-01-25 00:00:00');
-INSERT INTO `t_salary` VALUES ('19', '测试工资账套', '8888', '700', '600', '500', null, '5000', '0.05', '6000', '0.06', '7000', '0.07', '2020-01-23 20:18:21');
+INSERT INTO `t_salary` VALUES ('9', 'Marketing Department Payroll Set', '9000', '4000', '800', '500', null, '2000', '0.07', '2000', '0.07', '2000', '0.07', '2018-01-24 00:00:00');
+INSERT INTO `t_salary` VALUES ('10', 'Payroll set of personnel', '2000', '2000', '400', '1000', null, '2000', '0.07', '2000', '0.07', '2000', '0.07', '2018-01-01 00:00:00');
+INSERT INTO `t_salary` VALUES ('13', 'Operation and Maintenance Department Salary Set', '20000', '3000', '500', '500', null, '4000', '0.07', '4000', '0.07', '4000', '0.07', '2018-01-25 00:00:00');
+INSERT INTO `t_salary` VALUES ('19', 'Test payroll', '8888', '700', '600', '500', null, '5000', '0.05', '6000', '0.06', '7000', '0.07', '2020-01-23 20:18:21');
 
 -- ----------------------------
 -- Table structure for t_user
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(32) DEFAULT NULL COMMENT '姓名',
-  `phone` char(11) DEFAULT NULL COMMENT '手机号码',
-  `telephone` varchar(16) DEFAULT NULL COMMENT '电话号码',
-  `address` varchar(64) DEFAULT NULL COMMENT '地址',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `name` varchar(32) DEFAULT NULL COMMENT 'Name',
+  `phone` char(11) DEFAULT NULL COMMENT 'mobile phone number',
+  `telephone` varchar(16) DEFAULT NULL COMMENT 'telephone number',
+  `address` varchar(64) DEFAULT NULL COMMENT 'address',
   `enabled` tinyint(1) DEFAULT '1',
-  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
-  `password` varchar(255) DEFAULT NULL COMMENT '密码',
-  `userface` varchar(255) DEFAULT NULL COMMENT '用户头像',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `username` varchar(255) DEFAULT NULL COMMENT 'username',
+  `password` varchar(255) DEFAULT NULL COMMENT 'password',
+  `userface` varchar(255) DEFAULT NULL COMMENT 'profile picture',
+  `remark` varchar(255) DEFAULT NULL COMMENT 'Remarks',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='用户';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='user';
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('3', '系统管理员', '18568887789', '029-82881234', '深圳南山', '1', 'admin', '$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm', 'http://bpic.588ku.com/element_pic/01/40/00/64573ce2edc0728.jpg', '');
-INSERT INTO `t_user` VALUES ('5', '李白', '18568123489', '029-82123434', '海口美兰', '1', 'libai', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'http://bpic.588ku.com/element_pic/01/40/00/64573ce2edc0728.jpg', '');
-INSERT INTO `t_user` VALUES ('10', '韩愈', '18568123666', '029-82111555', '广州番禺', '1', 'hanyu', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517070040185&di=be0375e0c3db6c311b837b28c208f318&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Fpost%2F20150213%2F6%2F20150213141918532.jpg', '');
-INSERT INTO `t_user` VALUES ('11', '柳宗元', '18568123377', '029-82111333', '广州天河', '1', 'liuzongyuan', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515233756&di=0856d923a0a37a87fd26604a2c871370&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-27%2F041716704.jpg', '');
-INSERT INTO `t_user` VALUES ('12', '曾巩', '18568128888', '029-82111222', '广州越秀', '1', 'zenggong', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517070040185&di=be0375e0c3db6c311b837b28c208f318&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Fpost%2F20150213%2F6%2F20150213141918532.jpg', '');
+INSERT INTO `t_user` VALUES ('3', 'System administrator', '18568887789', '029-82881234', 'Shenzhen Nanshan', '1', 'admin', '$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm', 'http://bpic.588ku.com/element_pic/01/40/00/64573ce2edc0728.jpg', '');
+INSERT INTO `t_user` VALUES ('5', 'Li Bai', '18568123489', '029-82123434', 'Haikou Meilan', '1', 'libai', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'http://bpic.588ku.com/element_pic/01/40/00/64573ce2edc0728.jpg', '');
+INSERT INTO `t_user` VALUES ('10', 'Han Yu', '18568123666', '029-82111555', 'Guangzhou Panyu', '1', 'hanyu', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517070040185&di=be0375e0c3db6c311b837b28c208f318&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Fpost%2F20150213%2F6%2F20150213141918532.jpg', '');
+INSERT INTO `t_user` VALUES ('11', 'Liu Zongyuan', '18568123377', '029-82111333', 'Guangzhou Tianhe', '1', 'liuzongyuan', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515233756&di=0856d923a0a37a87fd26604a2c871370&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-27%2F041716704.jpg', '');
+INSERT INTO `t_user` VALUES ('12', 'Zeng Gong', '18568128888', '029-82111222', 'Guangzhou Yuexiu', '1', 'zenggong', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517070040185&di=be0375e0c3db6c311b837b28c208f318&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Fpost%2F20150213%2F6%2F20150213141918532.jpg', '');
 
 -- ----------------------------
 -- Table structure for t_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user_role`;
 CREATE TABLE `t_user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `uid` int(11) DEFAULT NULL COMMENT '用户id',
-  `rid` int(11) DEFAULT NULL COMMENT '角色id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
+  `uid` int(11) DEFAULT NULL COMMENT 'userid',
+  `rid` int(11) DEFAULT NULL COMMENT 'Rolesid',
   PRIMARY KEY (`id`),
   KEY `idx_rid` (`rid`) USING BTREE,
   KEY `idx_uid` (`uid`) USING BTREE,
   CONSTRAINT `fk_ur_rid` FOREIGN KEY (`rid`) REFERENCES `t_role` (`id`),
   CONSTRAINT `fk_ur_uid` FOREIGN KEY (`uid`) REFERENCES `t_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='用户与角色';
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='Users and roles';
 
 -- ----------------------------
 -- Records of t_user_role
@@ -793,7 +793,7 @@ DROP PROCEDURE IF EXISTS `addDep`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addDep`(in depName varchar(32),in parentId int,in enabled boolean,out result int,out result2 int)
 begin
-  -- 未使用，已经改成service实现
+  -- Unused，Has been changed toserviceachieve
   declare did int;
   declare pDepPath varchar(64);
   insert into t_department set name=depName,parentId=parentId,enabled=enabled;
@@ -814,7 +814,7 @@ DROP PROCEDURE IF EXISTS `deleteDep`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteDep`(in did int,out result int)
 begin
-  -- 未使用，已经改成service实现
+  -- Unused，Has been changed toserviceachieve
   declare ecount int;
   declare pid int;
   declare pcount int;
