@@ -245,7 +245,7 @@ INSERT INTO `t_department` VALUES ('126', 'a1', '124', '.1.115.124.126', '1', '0
 DROP TABLE IF EXISTS `t_employee`;
 CREATE TABLE `t_employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary keyid',
-  `name` varchar(10) DEFAULT NULL COMMENT 'Name',
+  `name` varchar(32) DEFAULT NULL COMMENT 'Name',
   `gender` char(4) DEFAULT NULL COMMENT 'gender',
   `birthday` date DEFAULT NULL COMMENT 'date of birth',
   `idCard` char(18) DEFAULT NULL COMMENT 'identification number',
