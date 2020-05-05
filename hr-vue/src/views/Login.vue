@@ -36,7 +36,7 @@
                     password: '123'
                 },
                 loginRules: {
-                    username: [{required: true, message: 'please enter user name', trigger: 'blur'}],
+                    username: [{required: true, message: 'Please enter user name', trigger: 'blur'}],
                     password: [{required: true, message: 'Please enter the password', trigger: 'blur'}]
                 },
                 loading: false
